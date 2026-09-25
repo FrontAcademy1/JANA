@@ -1,912 +1,1690 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffb6c1">
-<title>JANA ♡ همسات الحب</title>
+<meta name="theme-color" content="#090507">
+<meta name="description" content="A private cinematic memory website for two.">
+<title>OUR WORLD — Private Memories</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- =========================================================
-     CORE THEME CSS — الأربع ثيمات الأساسية داخل HTML
-========================================================= -->
 <style>
+/* =========================================================
+   GLOBAL
+========================================================= */
 :root{
-  --bg1:#fff7f8;
-  --bg2:#ffe3e9;
-  --bg3:#fff7f5;
-  --surface:rgba(255,255,255,.62);
-  --surface-strong:rgba(255,255,255,.82);
-  --primary:#e60067;
-  --primary-2:#ff7590;
-  --accent:#c73b65;
-  --deep:#800020;
-  --text:#4b2630;
-  --muted:#774252;
-  --gold:#d4af37;
-  --glow:#ff8fa3;
-  --shadow:rgba(128,0,32,.15);
-}
-
-body.theme-night{
-  --bg1:#08070d;
-  --bg2:#151020;
-  --bg3:#09070e;
-  --surface:rgba(20,17,31,.72);
-  --surface-strong:rgba(27,22,40,.92);
-  --primary:#d78ac0;
-  --primary-2:#9f62b7;
-  --accent:#c77ac1;
-  --deep:#f0c6e8;
-  --text:#f3e7f1;
-  --muted:#c7aec3;
-  --gold:#d8b36a;
-  --glow:#8b4d9e;
-  --shadow:rgba(0,0,0,.55);
-}
-
-body.theme-rose{
-  --bg1:#fff8f2;
-  --bg2:#ffe0d8;
-  --bg3:#fff4ef;
-  --surface:rgba(255,255,255,.6);
-  --surface-strong:rgba(255,255,255,.82);
-  --primary:#b82f58;
-  --primary-2:#ffad9e;
-  --accent:#bd536d;
-  --deep:#6d2038;
-  --text:#512e36;
-  --muted:#70424a;
-  --gold:#c99b58;
-  --glow:#ffad9e;
-  --shadow:rgba(109,32,56,.18);
-}
-
-/* الثيم الرابع */
-body.theme-cherry{
-  --bg1:#fff4f6;
-  --bg2:#f2ccd6;
-  --bg3:#fff0f3;
-  --surface:rgba(255,255,255,.58);
-  --surface-strong:rgba(255,255,255,.84);
-  --primary:#9f173d;
-  --primary-2:#dc5274;
-  --accent:#8e2949;
-  --deep:#4b1026;
-  --text:#3f222c;
-  --muted:#68404b;
-  --gold:#caa45f;
-  --glow:#c83d67;
-  --shadow:rgba(75,16,38,.2);
+  --black:#080607;
+  --black-2:#100b0d;
+  --burgundy:#3b101b;
+  --burgundy-2:#64152a;
+  --red:#9d263f;
+  --pink:#e7a4b6;
+  --gold:#c9a66b;
+  --gold-soft:#ead8ae;
+  --paper:#eadcc7;
+  --paper-dark:#cbb99d;
+  --white:#fff8f5;
+  --muted:rgba(255,248,245,.68);
+  --line:rgba(232,196,142,.22);
+  --ease:cubic-bezier(.22,.72,.18,1);
+  --shadow:0 30px 100px rgba(0,0,0,.55);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
-
+html{scroll-behavior:smooth;background:var(--black)}
 body{
-  font-family:"Cairo",sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 15% 10%,rgba(255,255,255,.9),transparent 28%),
-    radial-gradient(circle at 85% 30%,color-mix(in srgb,var(--glow) 28%,transparent),transparent 34%),
-    linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
+  min-height:100vh;
   overflow-x:hidden;
-  transition:background 1s ease,color .7s ease;
+  background:var(--black);
+  color:var(--white);
+  font-family:"Cairo",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body.is-locked{overflow:hidden}
+button,input{font:inherit}
+button{border:0;cursor:pointer}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--red);color:white}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+.hidden{display:none!important}
+.screen{
+  position:relative;
+  min-height:100svh;
+  width:100%;
+}
+.page{
+  display:none;
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+}
+.page.active{display:block}
+.container{
+  width:min(1180px,calc(100% - 40px));
+  margin-inline:auto;
+  position:relative;
+  z-index:3;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:var(--gold-soft);
+  font:500 .72rem/1 "Cinzel",serif;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+.eyebrow::before{
+  content:"";
+  width:34px;height:1px;background:var(--gold);
+}
+.section-title{
+  margin:14px 0 16px;
+  font:500 clamp(2.2rem,5vw,5rem)/.98 "Cormorant Garamond",serif;
+  letter-spacing:.01em;
+}
+.section-copy{
+  max-width:650px;
+  color:var(--muted);
+  font-size:.98rem;
+  line-height:2;
+}
+.btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:50px;
+  padding:0 24px;
+  color:var(--white);
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font:600 .7rem/1 "Cinzel",serif;
+  overflow:hidden;
+  transition:.45s var(--ease);
+  isolation:isolate;
+}
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.16),transparent 75%);
+  transform:translateX(-120%);
+  transition:.7s var(--ease);
+  z-index:-1;
+}
+.btn:hover{border-color:rgba(234,216,174,.6);transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,.28)}
+.btn:hover::before{transform:translateX(120%)}
+.btn.gold{background:linear-gradient(135deg,rgba(201,166,107,.2),rgba(201,166,107,.03));border-color:rgba(201,166,107,.5)}
+.icon-btn{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.05);
+  color:white;border:1px solid var(--line);
+  transition:.35s var(--ease);
+}
+.icon-btn:hover{transform:translateY(-3px);border-color:var(--gold)}
+
+.noise,.vignette,.scanlines{
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+}
+.noise{
+  opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+.vignette{background:radial-gradient(circle at center,transparent 35%,rgba(0,0,0,.62) 100%)}
+.scanlines{
+  opacity:.045;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(255,255,255,.12) 4px,transparent 5px);
 }
 
-button{font:inherit}
-img,video{max-width:100%}
-::selection{background:var(--primary-2);color:#fff}
-</style>
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+.cursor-dot,.cursor-ring{
+  position:fixed;
+  pointer-events:none;
+  z-index:9999;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+.cursor-dot{
+  width:5px;height:5px;background:#fff;
+  transition:opacity .2s;
+}
+.cursor-ring{
+  width:30px;height:30px;
+  border:1px solid rgba(255,220,200,.55);
+  transition:width .25s,height .25s,border-color .25s,background .25s,opacity .25s;
+}
+.cursor-ring.hover{
+  width:56px;height:56px;
+  border-color:var(--gold);
+  background:rgba(201,166,107,.08);
+}
 
-<!-- باقي التصميم -->
-<link rel="stylesheet" href="style.css">
+/* =========================================================
+   LOGIN
+========================================================= */
+#loginScreen{
+  display:grid;
+  place-items:center;
+  min-height:100svh;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(112,24,48,.38),transparent 38%),
+    radial-gradient(circle at 15% 80%,rgba(79,15,32,.28),transparent 30%),
+    linear-gradient(145deg,#050405,#17090e 55%,#070506);
+}
+.login-light{
+  position:absolute;
+  width:48vw;height:48vw;
+  max-width:650px;max-height:650px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(151,31,61,.22),transparent 68%);
+  filter:blur(10px);
+  animation:breathe 7s ease-in-out infinite;
+}
+.particles{position:absolute;inset:0;overflow:hidden}
+.particle{
+  position:absolute;
+  width:2px;height:2px;
+  border-radius:50%;
+  background:rgba(255,218,204,.65);
+  box-shadow:0 0 12px rgba(255,190,190,.55);
+  animation:floatParticle linear infinite;
+}
+.heart-float{
+  position:absolute;
+  color:rgba(218,125,151,.18);
+  font-family:"Cormorant Garamond",serif;
+  font-size:22px;
+  animation:heartDrift 9s linear infinite;
+}
+.login-shell{
+  width:min(960px,calc(100% - 34px));
+  position:relative;
+  z-index:4;
+  text-align:center;
+}
+.login-kicker{
+  color:var(--gold-soft);
+  font:500 .7rem/1 "Cinzel",serif;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.login-title{
+  font:500 clamp(2.5rem,7vw,5.7rem)/.9 "Cormorant Garamond",serif;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  text-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+.login-sub{
+  color:rgba(255,255,255,.5);
+  font-size:.72rem;
+  letter-spacing:.3em;
+  margin:18px 0 32px;
+  text-transform:uppercase;
+}
+.couple-gate{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(14px,4vw,36px);
+  width:min(650px,100%);
+  margin:0 auto 30px;
+}
+.person-gate{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border:1px solid rgba(225,189,145,.3);
+  background:#120a0d;
+  box-shadow:0 25px 70px rgba(0,0,0,.5);
+  transition:.6s var(--ease);
+}
+.person-gate::before{
+  content:"";
+  position:absolute;inset:7px;
+  border:1px solid rgba(255,255,255,.13);
+  z-index:2;
+}
+.person-gate::after{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,230,210,.24) 48%,transparent 61%);
+  transform:translateX(-70%);
+  transition:.9s var(--ease);
+  z-index:3;
+}
+.person-gate:hover{
+  transform:translateY(-9px) scale(1.015);
+  border-color:rgba(234,216,174,.65);
+  box-shadow:0 35px 100px rgba(0,0,0,.62),0 0 55px rgba(132,29,55,.22);
+}
+.person-gate:hover::after{transform:translateX(70%)}
+.person-gate img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.82) contrast(1.08);
+  transition:.8s var(--ease);
+}
+.person-gate:hover img{transform:scale(1.06);filter:saturate(1) contrast(1.08)}
+.person-label{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:55px 15px 18px;
+  z-index:4;
+  text-align:left;
+  background:linear-gradient(transparent,rgba(0,0,0,.86));
+}
+.person-label strong{
+  display:block;
+  font:500 clamp(1rem,2.4vw,1.55rem)/1 "Cinzel",serif;
+  letter-spacing:.1em;
+}
+.person-label span{
+  display:block;
+  margin-top:8px;
+  color:var(--gold-soft);
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.access{
+  width:min(430px,100%);
+  margin:auto;
+}
+.access-label{
+  color:rgba(255,255,255,.52);
+  font:500 .63rem/1 "Cinzel",serif;
+  letter-spacing:.28em;
+  margin-bottom:10px;
+}
+.password-row{
+  display:flex;
+  border:1px solid rgba(234,216,174,.28);
+  background:rgba(0,0,0,.25);
+  transition:.3s;
+}
+.password-row:focus-within{border-color:rgba(234,216,174,.7);box-shadow:0 0 35px rgba(160,30,55,.15)}
+.password-row input{
+  flex:1;min-width:0;
+  height:54px;padding:0 17px;
+  color:white;background:transparent;border:0;outline:0;
+  font-size:.9rem;
+  text-align:left;
+}
+.password-row input::placeholder{color:rgba(255,255,255,.34)}
+.password-row button{height:54px;padding:0 19px;background:var(--gold);color:#170c0d;font:700 .62rem "Cinzel",serif;letter-spacing:.08em}
+.login-error{
+  min-height:22px;
+  margin-top:10px;
+  color:#e69aaa;
+  font-size:.72rem;
+  opacity:0;
+  transition:.3s;
+}
+.login-error.show{opacity:1}
+.shake{animation:shake .45s ease}
+.login-note{
+  color:rgba(255,255,255,.25);
+  font-size:.62rem;
+  letter-spacing:.1em;
+  margin-top:9px;
+}
+
+/* =========================================================
+   WORLD SELECTOR
+========================================================= */
+#worldSelector{
+  display:none;
+  place-items:center;
+  min-height:100svh;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(85,13,34,.28),transparent 42%),
+    #080607;
+}
+#worldSelector.active{display:grid}
+.selector-shell{text-align:center;width:min(1080px,calc(100% - 34px))}
+.selector-title{font:500 clamp(2.4rem,7vw,6rem)/.85 "Cormorant Garamond",serif}
+.selector-copy{margin:18px auto 40px;color:var(--muted);max-width:520px;line-height:1.9}
+.world-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.world-card{
+  position:relative;
+  min-height:430px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.13);
+  background:#10090d;
+  cursor:pointer;
+  transition:.65s var(--ease);
+}
+.world-card:hover{transform:translateY(-10px);border-color:rgba(201,166,107,.55);box-shadow:0 35px 90px rgba(0,0,0,.5)}
+.world-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.66) saturate(.85);transition:.8s var(--ease)}
+.world-card:hover img{transform:scale(1.055);filter:brightness(.78) saturate(1)}
+.world-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.92))}
+.world-card-content{position:absolute;left:0;right:0;bottom:0;padding:34px;text-align:left}
+.world-card-kicker{font:500 .65rem "Cinzel",serif;color:var(--gold-soft);letter-spacing:.25em}
+.world-card h2{font:500 clamp(2rem,5vw,4rem)/.95 "Cormorant Garamond",serif;margin:8px 0}
+.world-card p{color:rgba(255,255,255,.64);font-size:.8rem}
+
+/* =========================================================
+   SHARED WORLD BACKGROUND / NAV
+========================================================= */
+.world-bg{
+  position:absolute;inset:0;z-index:0;overflow:hidden;background:#080607;
+}
+.world-bg video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:brightness(.43) contrast(1.08) saturate(.72);
+}
+.world-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.18) 28%,rgba(0,0,0,.58) 100%);
+}
+.her-world .world-bg::after{background:linear-gradient(180deg,rgba(25,4,12,.7),rgba(25,4,12,.14) 32%,rgba(7,4,5,.8))}
+.my-world .world-bg video{filter:brightness(.28) contrast(1.18) saturate(.48)}
+.my-world .world-bg::after{background:linear-gradient(180deg,rgba(0,0,0,.82),rgba(17,2,7,.2) 40%,rgba(0,0,0,.9))}
+.world-nav{
+  position:fixed;top:0;left:0;right:0;
+  height:76px;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+  background:linear-gradient(rgba(5,4,5,.72),transparent);
+  backdrop-filter:blur(8px);
+}
+.brand{
+  font:500 .8rem "Cinzel",serif;
+  letter-spacing:.25em;
+  color:var(--gold-soft);
+}
+.nav-links{display:flex;gap:25px}
+.nav-links button{
+  color:rgba(255,255,255,.63);
+  background:none;
+  font:500 .62rem "Cinzel",serif;
+  letter-spacing:.18em;
+  transition:.3s;
+}
+.nav-links button:hover,.nav-links button.active{color:white}
+.nav-links button.active::after{
+  content:"";
+  display:block;width:18px;height:1px;background:var(--gold);margin:7px auto 0;
+}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.music-btn{
+  height:38px;
+  padding:0 14px;
+  display:flex;align-items:center;gap:9px;
+  color:white;background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.18);
+  font:500 .58rem "Cinzel",serif;
+  letter-spacing:.13em;
+  transition:.3s;
+}
+.music-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.music-btn.playing .music-dot{animation:musicPulse 1s ease-in-out infinite}
+.mobile-nav{display:none}
+
+/* =========================================================
+   HER WORLD
+========================================================= */
+.her-world{background:#10070a}
+.her-hero,.my-hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  position:relative;
+  padding:110px 0 70px;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:minmax(280px,420px) 1fr;
+  align-items:center;
+  gap:clamp(45px,8vw,120px);
+}
+.hero-portrait{
+  position:relative;
+  width:min(100%,390px);
+  aspect-ratio:3/4;
+  justify-self:center;
+  border:1px solid rgba(232,196,142,.38);
+  padding:8px;
+  background:rgba(0,0,0,.25);
+  box-shadow:0 35px 90px rgba(0,0,0,.55);
+}
+.hero-portrait::before{
+  content:"";position:absolute;inset:17px;border:1px solid rgba(255,255,255,.1);z-index:2;pointer-events:none;
+}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.86)}
+.hero-portrait::after{
+  content:"";
+  position:absolute;width:160px;height:160px;
+  right:-75px;bottom:-55px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(174,42,76,.32),transparent 70%);
+  filter:blur(8px);
+}
+.hero-content{max-width:690px}
+.hero-name{
+  color:var(--gold-soft);
+  font:500 clamp(.8rem,2vw,1rem) "Cinzel",serif;
+  letter-spacing:.35em;
+  margin-bottom:20px;
+}
+.hero-title{
+  font:500 clamp(4rem,9vw,8.5rem)/.78 "Cormorant Garamond",serif;
+  text-transform:uppercase;
+}
+.hero-title em{font-style:normal;color:var(--pink)}
+.hero-message{
+  margin:28px 0 34px;
+  max-width:560px;
+  color:rgba(255,255,255,.7);
+  font:400 clamp(1rem,1.6vw,1.18rem)/1.9 "Cairo",sans-serif;
+}
+.hero-meta{display:flex;gap:12px;flex-wrap:wrap}
+
+.section{
+  position:relative;
+  padding:130px 0;
+  background:rgba(5,3,4,.7);
+}
+.section.alt{background:linear-gradient(180deg,#12070b,#090607)}
+.section-head{margin-bottom:50px}
+.section-head.split{display:flex;justify-content:space-between;align-items:end;gap:30px}
+.section-number{
+  color:rgba(255,255,255,.25);
+  font:500 .65rem "Cinzel",serif;
+  letter-spacing:.2em;
+}
+
+/* STORY */
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+.story-item{
+  min-height:270px;
+  padding:35px 25px;
+  border-right:1px solid var(--line);
+  position:relative;
+}
+.story-item:last-child{border-right:0}
+.story-item::before{
+  content:"";position:absolute;top:-4px;left:25px;width:8px;height:8px;background:var(--gold);border-radius:50%;box-shadow:0 0 20px rgba(201,166,107,.6)
+}
+.story-year{color:var(--gold);font:500 .62rem "Cinzel",serif;letter-spacing:.2em}
+.story-item h3{font:500 2rem "Cormorant Garamond",serif;margin:22px 0 12px}
+.story-item p{color:var(--muted);font-size:.8rem;line-height:1.9}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:80px;
+  gap:14px;
+}
+.gallery-item{
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#160b0e;cursor:pointer;
+}
+.gallery-item:nth-child(1){grid-column:span 7;grid-row:span 5}
+.gallery-item:nth-child(2){grid-column:span 5;grid-row:span 3}
+.gallery-item:nth-child(3){grid-column:span 5;grid-row:span 4}
+.gallery-item:nth-child(4){grid-column:span 7;grid-row:span 4}
+.gallery-item:nth-child(5){grid-column:span 4;grid-row:span 4}
+.gallery-item:nth-child(6){grid-column:span 8;grid-row:span 4}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.8s var(--ease);filter:saturate(.82)}
+.gallery-item:hover img{transform:scale(1.08);filter:saturate(1)}
+.gallery-item::after{content:"VIEW MEMORY";position:absolute;inset:auto 16px 14px;color:white;font:500 .58rem "Cinzel",serif;letter-spacing:.2em;opacity:0;transform:translateY(8px);transition:.4s}
+.gallery-item:hover::after{opacity:1;transform:none}
+
+/* LETTER */
+.letter-wrap{display:grid;place-items:center}
+.letter-card{
+  width:min(760px,100%);
+  color:#2c2119;
+  background:
+    linear-gradient(rgba(255,250,235,.86),rgba(225,208,181,.94)),
+    repeating-linear-gradient(0deg,transparent 0,transparent 31px,rgba(80,50,25,.08) 32px);
+  padding:clamp(30px,7vw,70px);
+  position:relative;
+  box-shadow:0 35px 100px rgba(0,0,0,.5);
+  transform-origin:top center;
+  transition:.8s var(--ease);
+}
+.letter-card::before{
+  content:"";position:absolute;inset:12px;border:1px solid rgba(77,45,21,.22);pointer-events:none;
+}
+.letter-top{display:flex;justify-content:space-between;color:#775e42;font:500 .62rem "Cinzel",serif;letter-spacing:.14em}
+.letter-card h3{font:500 clamp(2.2rem,5vw,4rem)/1 "Cormorant Garamond",serif;margin:35px 0 18px}
+.letter-text{font-size:1rem;line-height:2.15;white-space:pre-line}
+.letter-seal{
+  width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;
+  margin:34px auto 0;
+  border:1px solid #8b5a50;
+  color:#8b303c;font:700 1.4rem "Cormorant Garamond",serif;
+}
+.letter-card.closed .letter-text{max-height:95px;overflow:hidden;position:relative}
+.letter-card.closed .letter-text::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#e5d7bf)}
+.letter-card.closed{cursor:pointer}
+.letter-card.closed:hover{transform:translateY(-5px) rotate(-.25deg)}
+
+/* VIDEO */
+.video-frame{
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+  border:1px solid var(--line);background:#050405;
+  box-shadow:var(--shadow);
+}
+.video-frame video{width:100%;height:100%;object-fit:cover}
+.video-caption{position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:end;pointer-events:none}
+.video-caption span{font:500 .62rem "Cinzel",serif;letter-spacing:.2em}
+
+/* GIFTS */
+.gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.gift{
+  min-height:230px;
+  padding:28px 22px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(75,13,28,.15));
+  cursor:pointer;
+  transition:.5s var(--ease);
+}
+.gift:hover{transform:translateY(-8px);border-color:rgba(201,166,107,.6)}
+.gift-num{color:var(--gold);font:500 .6rem "Cinzel",serif;letter-spacing:.2em}
+.gift h3{font:500 2rem "Cormorant Garamond",serif;margin:35px 0 10px}
+.gift p{color:var(--muted);font-size:.75rem;line-height:1.8}
+.gift-icon{
+  position:absolute;right:20px;top:18px;
+  font:500 2.5rem "Cormorant Garamond",serif;color:rgba(232,164,182,.3)
+}
+.gift.open{border-color:var(--gold);background:rgba(201,166,107,.07)}
+
+/* FOOTER */
+.world-footer{
+  min-height:55vh;
+  display:grid;place-items:center;text-align:center;
+  padding:100px 20px;
+  background:#070506;
+}
+.footer-title{font:500 clamp(2.8rem,7vw,7rem)/.88 "Cormorant Garamond",serif;max-width:900px}
+.footer-mark{font:2rem "Cormorant Garamond",serif;color:var(--pink);margin:28px}
+.footer-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+/* =========================================================
+   MY WORLD
+========================================================= */
+.my-world{background:#050505}
+.my-world .section{background:rgba(3,3,3,.82)}
+.my-world .section.alt{background:#070707}
+.my-world .hero-portrait{border-color:rgba(150,30,52,.55);box-shadow:0 35px 100px rgba(0,0,0,.8),0 0 55px rgba(126,14,39,.15)}
+.my-world .hero-portrait::after{background:radial-gradient(circle,rgba(151,24,50,.28),transparent 70%)}
+.my-world .hero-title{font-family:"Cinzel",serif;font-size:clamp(3rem,8vw,7.5rem);letter-spacing:.04em}
+.my-world .hero-title em{color:#a52d46}
+.my-world .hero-message{font-size:.95rem}
+.identity-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start
+}
+.identity-copy{font:400 clamp(1.2rem,2.2vw,1.65rem)/1.8 "Cormorant Garamond",serif;color:#ddd;max-width:720px}
+.spec-list{border-top:1px solid rgba(255,255,255,.12)}
+.spec{display:flex;justify-content:space-between;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.1);gap:20px}
+.spec span:first-child{color:#777;font:500 .6rem "Cinzel",serif;letter-spacing:.16em}
+.spec span:last-child{color:#ddd;font-size:.75rem;text-align:right}
+.archive-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.archive-card{
+  min-height:260px;padding:24px;position:relative;
+  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(135deg,#111,#090909);
+  overflow:hidden;transition:.45s var(--ease);
+}
+.archive-card::after{
+  content:"";position:absolute;width:170px;height:170px;right:-80px;bottom:-80px;border-radius:50%;background:rgba(143,24,49,.14);filter:blur(10px)
+}
+.archive-card:hover{transform:translateY(-7px);border-color:rgba(165,45,70,.5)}
+.archive-index{color:#8e344a;font:500 .6rem "Cinzel",serif;letter-spacing:.2em}
+.archive-card h3{font:500 2.1rem "Cormorant Garamond",serif;margin-top:70px}
+.archive-card p{font-size:.72rem;color:#777;margin-top:8px}
+.timeline{position:relative;max-width:850px;margin:auto}
+.timeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.12);transform:translateX(-50%)}
+.time-item{width:50%;padding:0 45px 65px;position:relative}
+.time-item:nth-child(even){margin-left:50%;text-align:left}
+.time-item:nth-child(odd){text-align:right}
+.time-dot{position:absolute;top:5px;width:9px;height:9px;background:#8e263e;border-radius:50%;box-shadow:0 0 20px rgba(142,38,62,.7)}
+.time-item:nth-child(odd) .time-dot{right:-4px}
+.time-item:nth-child(even) .time-dot{left:-4px}
+.time-date{color:#9c344c;font:500 .6rem "Cinzel",serif;letter-spacing:.2em}
+.time-item h3{font:500 2.1rem "Cormorant Garamond",serif;margin:10px 0}
+.time-item p{color:#777;font-size:.76rem;line-height:1.9}
+.favorites{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.favorite{
+  min-height:190px;padding:26px;border:1px solid rgba(255,255,255,.1);background:#0d0d0d
+}
+.favorite small{color:#7f2c43;font:500 .58rem "Cinzel",serif;letter-spacing:.2em}
+.favorite h3{font:500 2rem "Cormorant Garamond",serif;margin:22px 0 7px}
+.favorite p{color:#777;font-size:.74rem}
+
+/* =========================================================
+   LIGHTBOX / TOAST / TRANSITION
+========================================================= */
+.lightbox{
+  position:fixed;inset:0;z-index:500;
+  display:none;place-items:center;
+  padding:30px;background:rgba(0,0,0,.88);
+  backdrop-filter:blur(15px);
+}
+.lightbox.open{display:grid}
+.lightbox img{max-width:min(1000px,92vw);max-height:82vh;object-fit:contain;border:1px solid var(--line);box-shadow:0 30px 100px #000}
+.lightbox-close{position:absolute;top:22px;right:22px}
+.toast{
+  position:fixed;left:50%;bottom:24px;z-index:700;
+  transform:translate(-50%,20px);
+  padding:12px 18px;
+  background:rgba(10,7,8,.92);border:1px solid var(--line);
+  color:white;font-size:.72rem;
+  opacity:0;pointer-events:none;transition:.35s var(--ease);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.page-transition{
+  position:fixed;inset:0;z-index:1000;
+  pointer-events:none;background:#070506;
+  transform:scaleY(0);transform-origin:bottom;
+}
+.page-transition.run{animation:pageWipe .9s var(--ease) both}
+
+/* =========================================================
+   REVEALS
+========================================================= */
+.reveal{opacity:0;transform:translateY(35px);filter:blur(5px);transition:1s var(--ease)}
+.reveal.visible{opacity:1;transform:none;filter:none}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .mobile-nav{display:grid}
+  .world-nav{padding:0 18px}
+  .hero-inner{grid-template-columns:1fr;gap:45px;text-align:center}
+  .hero-content{margin:auto}
+  .hero-message{margin-inline:auto}
+  .hero-meta{justify-content:center}
+  .story-grid{grid-template-columns:1fr 1fr}
+  .story-item:nth-child(2){border-right:0}
+  .story-item:nth-child(3),.story-item:nth-child(4){border-top:1px solid var(--line)}
+  .gifts{grid-template-columns:1fr 1fr}
+  .identity-grid{grid-template-columns:1fr}
+  .archive-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .container{width:min(100% - 28px,1180px)}
+  .login-shell{width:calc(100% - 24px)}
+  .login-kicker{letter-spacing:.25em}
+  .login-title{font-size:clamp(2.5rem,13vw,4.3rem)}
+  .login-sub{letter-spacing:.18em}
+  .couple-gate{gap:10px}
+  .person-label{padding:45px 10px 12px}
+  .person-label strong{font-size:.78rem}
+  .person-label span{font-size:.48rem}
+  .password-row input{height:50px}
+  .password-row button{height:50px;padding:0 12px;font-size:.53rem}
+  .world-grid{grid-template-columns:1fr}
+  .world-card{min-height:330px}
+  .selector-title{font-size:clamp(3rem,15vw,5rem)}
+  .section{padding:90px 0}
+  .section-head.split{display:block}
+  .story-grid{grid-template-columns:1fr}
+  .story-item{border-right:0;border-bottom:1px solid var(--line)!important;min-height:210px}
+  .story-item:last-child{border-bottom:0!important}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:130px}
+  .gallery-item:nth-child(n){grid-column:span 1;grid-row:span 2}
+  .gallery-item:nth-child(1),.gallery-item:nth-child(4){grid-column:span 2}
+  .gifts,.archive-grid,.favorites{grid-template-columns:1fr}
+  .gift{min-height:190px}
+  .timeline::before{left:8px}
+  .time-item,.time-item:nth-child(even){width:100%;margin:0;text-align:left;padding-left:35px;padding-right:0}
+  .time-item:nth-child(odd){text-align:left}
+  .time-item:nth-child(odd) .time-dot,.time-item:nth-child(even) .time-dot{left:4px;right:auto}
+  .nav-actions .music-btn{padding:0 10px}
+  .brand{font-size:.62rem;letter-spacing:.16em}
+  .hero-portrait{width:min(78vw,340px)}
+  .hero-title{font-size:clamp(3.5rem,17vw,6rem)}
+  .my-world .hero-title{font-size:clamp(2.6rem,12vw,5rem)}
+}
+@media(max-width:390px){
+  .couple-gate{gap:7px}
+  .person-gate::before{inset:4px}
+  .person-label strong{font-size:.67rem}
+  .person-label span{font-size:.4rem}
+  .password-row{display:block;border:0;background:none}
+  .password-row input{width:100%;border:1px solid var(--line);margin-bottom:8px}
+  .password-row button{width:100%;border:1px solid rgba(255,255,255,.12)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none;filter:none}
+  .noise,.scanlines{display:none}
+}
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+@keyframes breathe{0%,100%{transform:scale(.92);opacity:.6}50%{transform:scale(1.08);opacity:1}}
+@keyframes floatParticle{from{transform:translateY(110vh);opacity:0}15%{opacity:.8}85%{opacity:.5}to{transform:translateY(-10vh);opacity:0}}
+@keyframes heartDrift{from{transform:translateY(110vh) rotate(0);opacity:0}20%{opacity:.5}80%{opacity:.25}to{transform:translateY(-10vh) rotate(20deg);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(5px)}}
+@keyframes musicPulse{0%,100%{box-shadow:0 0 0 rgba(201,166,107,0)}50%{box-shadow:0 0 14px rgba(201,166,107,.8)}}
+@keyframes pageWipe{0%{transform:scaleY(0)}45%{transform:scaleY(1)}55%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:top}}
+</style>
 </head>
 
-<body>
+<body class="is-locked">
 
-<div class="background-glow" aria-hidden="true">
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-  <div class="glow three"></div>
-</div>
-
-<div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
-
-<!-- =========================================================
-     THEME SWITCHER
-========================================================= -->
-<div class="theme-switcher" id="themeSwitcher">
-  <button class="theme-main-btn" id="themeMainBtn" type="button" aria-label="تغيير شكل الموقع" aria-expanded="false">
-    ✦
-  </button>
-
-  <div class="theme-options">
-    <button class="theme-option" type="button" data-theme="pink">
-      <span class="theme-dot pink"></span>
-      <span>Pink Love</span>
-    </button>
-    <button class="theme-option" type="button" data-theme="night">
-      <span class="theme-dot night"></span>
-      <span>Dream Night</span>
-    </button>
-    <button class="theme-option" type="button" data-theme="rose">
-      <span class="theme-dot rose"></span>
-      <span>Rose Dream</span>
-    </button>
-    <button class="theme-option" type="button" data-theme="cherry">
-      <span class="theme-dot cherry"></span>
-      <span>Cherry Velvet</span>
-    </button>
-  </div>
-</div>
+<div class="noise"></div>
+<div class="vignette"></div>
+<div class="scanlines"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="page-transition" id="pageTransition"></div>
 
 <!-- =========================================================
-     OPENING
+     LOGIN
 ========================================================= -->
-<div class="opening" id="opening">
-  <div class="opening-card">
-    <div class="opening-teddy">
-      <img
-        src="https://i.pinimg.com/originals/39/6d/8c/396d8cf19235b7b437d1067045a63b5a.gif"
-        alt="دبدوب">
+<section id="loginScreen" class="screen">
+  <div class="login-light"></div>
+  <div class="particles" id="particles"></div>
+  <div class="login-shell">
+    <div class="login-kicker">A Private Place For Two</div>
+    <h1 class="login-title">Our Little World</h1>
+    <p class="login-sub">Two stories · One archive · Endless memories</p>
+
+    <div class="couple-gate">
+      <div class="person-gate interactive" data-person="HER" aria-label="Her photo">
+        <img id="loginHerImage" src="HER_IMAGE.jpg" alt="Her portrait" loading="eager">
+        <div class="person-label">
+          <strong>HER WORLD</strong>
+          <span>JANA · THE SOFTER SIDE</span>
+        </div>
+      </div>
+      <div class="person-gate interactive" data-person="ME" aria-label="My photo">
+        <img id="loginMyImage" src="MY_IMAGE.jpg" alt="My portrait" loading="eager">
+        <div class="person-label">
+          <strong>MY WORLD</strong>
+          <span>MOAZ · THE DARKER SIDE</span>
+        </div>
+      </div>
     </div>
 
-    <h1>همسات الحب</h1>
-    <div class="opening-jana">JANA</div>
-    <p>قبل ما تدخلي عالمنا الصغير...</p>
-
-    <div class="question">جنى... بتحبيني؟ ♡</div>
-
-    <div class="answer-buttons">
-      <button class="answer-btn yes-btn" id="yesBtn" type="button">أكيد ♥</button>
-      <button class="answer-btn no-btn" id="noBtn" type="button">هفكر 🙃</button>
-    </div>
-
-    <div class="opening-note" id="openingNote" aria-live="polite"></div>
-  </div>
-</div>
-
-<!-- =========================================================
-     NAV
-========================================================= -->
-<nav class="navbar">
-  <a href="#home" class="logo">JANA ♡</a>
-
-  <ul class="nav-links">
-    <li><a href="#teddies">دباديبنا</a></li>
-    <li><a href="#letter">رسالة جنى</a></li>
-    <li><a href="#memories">ذكرياتنا</a></li>
-    <li><a href="#video">الفيديو</a></li>
-    <li><a href="#music">أغنيتنا</a></li>
-  </ul>
-</nav>
-
-<main>
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-<section class="hero" id="home">
-  <div class="container">
-    <div class="hero-content">
-      <span class="hero-small">✦ إلى جنى... صاحبة أجمل تفاصيل ✦</span>
-      <h1>جنى</h1>
-      <div class="hero-script">My favorite person</div>
-
-      <p>
-        في ناس بنقابلهم عادي...<br>
-        وفي شخص واحد بيخلي كل حاجة بعده مختلفة.<br>
-        وإنتِ يا جنى من أجمل الحاجات اللي حصلتلي.
-      </p>
-
-      <button class="scroll-button" type="button" onclick="scrollToSection('teddies')">
-        ادخلي الحكاية ↓
-      </button>
+    <div class="access">
+      <div class="access-label">PRIVATE ACCESS</div>
+      <form id="loginForm" novalidate>
+        <div class="password-row" id="passwordRow">
+          <input id="passwordInput" type="password" autocomplete="off" placeholder="Enter Password" aria-label="Enter password">
+          <button type="submit">ENTER OUR WORLD</button>
+        </div>
+      </form>
+      <div class="login-error" id="loginError">This world is only for us.</div>
+      <div class="login-note">A front-end experience — not real security.</div>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     TEDDIES
+     WORLD SELECTOR
 ========================================================= -->
-<section class="teddy-section" id="teddies">
-  <div class="container reveal">
-    <div class="section-title">
-      <span>01 — LITTLE TEDDY WORLD</span>
-      <h2>دباديبنا</h2>
-      <p>اختاري دبدوب يا جنى، وكل واحد فيهم عنده رسالة صغيرة ليكي. ♡</p>
-    </div>
-
-    <div class="garden-card">
-      <div class="teddy-stage">
-
-        <div class="teddy teddy-1"
-             data-message="الدبدوب ده بيقولك: يا جنى، وجودك في حياة أي حد مش حاجة عادية، إنتِ من الحاجات الحلوة اللي الواحد بيحمد ربنا عليها كل يوم. ♡">
-          <div class="mini-teddy" aria-hidden="true">
-            <span class="ear ear-left"></span><span class="ear ear-right"></span>
-            <span class="head"></span><span class="eye eye-left"></span><span class="eye eye-right"></span>
-            <span class="muzzle"></span><span class="nose"></span><span class="mouth"></span>
-            <span class="body"></span><span class="arm arm-left"></span><span class="arm arm-right"></span>
-            <span class="foot foot-left"></span><span class="foot foot-right"></span><span class="heart-mark">♡</span>
-          </div>
-          <div class="teddy-name">دبدوب الحب ♡</div>
+<section id="worldSelector" class="screen">
+  <div class="selector-shell">
+    <div class="eyebrow">01 — CHOOSE A WORLD</div>
+    <h1 class="selector-title">Where do you want to go?</h1>
+    <p class="selector-copy">Two different atmospheres, one shared story. Choose a door and enter.</p>
+    <div class="world-grid">
+      <article class="world-card interactive" data-open-world="her" tabindex="0" aria-label="Enter Her World">
+        <img id="selectorHerImage" src="HER_IMAGE.jpg" alt="Her portrait" loading="lazy">
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <div class="world-card-kicker">THE SOFT ARCHIVE</div>
+          <h2>HER WORLD</h2>
+          <p>Romantic · Soft · Cinematic</p>
         </div>
-
-        <div class="teddy teddy-2"
-             data-message="الدبدوب التاني بيقولك: جنى، مهما حاولت أوصفلك مكانتك عندي، الكلام هيبقى أقل بكتير من اللي جوا قلبي. إنتِ حكاية لوحدك. ♡">
-          <div class="mini-teddy" aria-hidden="true">
-            <span class="ear ear-left"></span><span class="ear ear-right"></span>
-            <span class="head"></span><span class="eye eye-left"></span><span class="eye eye-right"></span>
-            <span class="muzzle"></span><span class="nose"></span><span class="mouth"></span>
-            <span class="body"></span><span class="arm arm-left"></span><span class="arm arm-right"></span>
-            <span class="foot foot-left"></span><span class="foot foot-right"></span><span class="heart-mark">♡</span>
-          </div>
-          <div class="teddy-name">دبدوب جنى ♡</div>
+      </article>
+      <article class="world-card interactive" data-open-world="my" tabindex="0" aria-label="Enter My World">
+        <img id="selectorMyImage" src="MY_IMAGE.jpg" alt="My portrait" loading="lazy">
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <div class="world-card-kicker">THE DARK ARCHIVE</div>
+          <h2>MY WORLD</h2>
+          <p>Noir · Archive · Identity</p>
         </div>
-
-        <div class="teddy teddy-3"
-             data-message="الدبدوب التالت بيقولك: لو كان ينفع أخبي كل اللحظات الحلوة في صندوق وأديهالك، كنت حطيت فيه كل لحظة ضحكتِ فيها وكل ذكرى خلت الدنيا أحلى. ♡">
-          <div class="mini-teddy" aria-hidden="true">
-            <span class="ear ear-left"></span><span class="ear ear-right"></span>
-            <span class="head"></span><span class="eye eye-left"></span><span class="eye eye-right"></span>
-            <span class="muzzle"></span><span class="nose"></span><span class="mouth"></span>
-            <span class="body"></span><span class="arm arm-left"></span><span class="arm arm-right"></span>
-            <span class="foot foot-left"></span><span class="foot foot-right"></span><span class="heart-mark">♡</span>
-          </div>
-          <div class="teddy-name">دبدوب الذكريات ♡</div>
-        </div>
-
-        <div class="teddy teddy-4"
-             data-message="آخر دبدوب بيقولك: جنى، لو الحكاية دي كتاب فأنتِ أجمل صفحة فيه، ولو كانت أغنية فأنتِ الجزء اللي الواحد يحب يعيده ألف مرة. ♡">
-          <div class="mini-teddy" aria-hidden="true">
-            <span class="ear ear-left"></span><span class="ear ear-right"></span>
-            <span class="head"></span><span class="eye eye-left"></span><span class="eye eye-right"></span>
-            <span class="muzzle"></span><span class="nose"></span><span class="mouth"></span>
-            <span class="body"></span><span class="arm arm-left"></span><span class="arm arm-right"></span>
-            <span class="foot foot-left"></span><span class="foot foot-right"></span><span class="heart-mark">♡</span>
-          </div>
-          <div class="teddy-name">دبدوب الحكاية ♡</div>
-        </div>
-
-        <div class="teddy-ground"></div>
-      </div>
-
-      <div class="teddy-selection" id="teddySelection" aria-live="polite">
-        اختاري دبدوب يا جنى 🧸
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     LETTER
+     HER WORLD
 ========================================================= -->
-<section class="letter-section" id="letter">
-  <div class="container reveal">
-    <div class="section-title">
-      <span>02 — A LETTER FOR JANA</span>
-      <h2>رسالة لجنى</h2>
-      <p>رسالة بسيطة، بس كل كلمة فيها معمولة عشان توصلك إحساسها بهدوء. ♡</p>
-    </div>
-
-    <div class="letter-area">
-      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="فتح رسالة جنى">
-
-        <div class="envelope-back"></div>
-
-        <div class="envelope-paper">
-          <div class="paper-decoration">
-            <img src="assets/photo2.jpg" alt="صورة جنى" onerror="this.style.display='none'">
-          </div>
-
-          <div class="paper-title">إلى جنى...</div>
-          <div class="letter-text" id="letterText"></div>
-          <div class="paper-signature">♡ جوجو</div>
-        </div>
-
-        <div class="envelope-flap"></div>
-        <div class="heart-seal">♥</div>
-        <div class="letter-hint">اضغطي على الظرف وافتحي الرسالة ♡</div>
-      </div>
-    </div>
+<main id="herWorld" class="page her-world">
+  <div class="world-bg">
+    <video id="herBackground" muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="HER_BACKGROUND_VIDEO.mp4" type="video/mp4">
+    </video>
   </div>
-</section>
 
-<!-- =========================================================
-     MEMORIES
-========================================================= -->
-<section class="memories-section" id="memories">
-  <div class="container reveal">
-    <div class="section-title">
-      <span>03 — MEMORIES</span>
-      <h2>ذكرياتنا</h2>
-      <p>كل صورة هنا مستنية ذكرى جديدة تتضاف للحكاية.</p>
+  <nav class="world-nav">
+    <div class="brand">JANA / OUR ARCHIVE</div>
+    <div class="nav-links" data-nav="her">
+      <button data-scroll="herHome">HOME</button>
+      <button data-scroll="herStory">STORY</button>
+      <button data-scroll="herMemories">MEMORIES</button>
+      <button data-scroll="herLetter">LETTER</button>
+      <button data-scroll="herVideo">VIDEO</button>
     </div>
+    <div class="nav-actions">
+      <button class="music-btn interactive" id="herMusic" aria-label="Play or pause her music"><span class="music-dot"></span><span class="music-label">♪ MUSIC</span></button>
+      <button class="icon-btn mobile-nav interactive" data-mobile-nav="her" aria-label="Open navigation">☰</button>
+    </div>
+  </nav>
 
-    <div class="memory-slider">
-      <div class="slides" id="slides">
+  <audio id="herAudio" preload="metadata" loop>
+    <source src="HER_SONG.mp3" type="audio/mpeg">
+  </audio>
 
-        <div class="slide">
-          <div class="polaroid">
-            <div class="photo-placeholder">
-              <img src="assets/photo1.jpg" alt="ذكرى جنى الأولى">
-            </div>
-            <div class="polaroid-caption">أول لحظة ♡</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="polaroid">
-            <div class="photo-placeholder">
-              <img src="assets/photo2.jpg" alt="ذكرى جنى الثانية">
-            </div>
-            <div class="polaroid-caption">لحظة لا تُنسى</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="polaroid">
-            <div class="photo-placeholder">
-              <img src="assets/photo3.jpg" alt="ذكرى جنى الثالثة">
-            </div>
-            <div class="polaroid-caption">أنا و جين</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="polaroid">
-            <div class="photo-placeholder">
-              <img src="assets/photo4.jpg" alt="ذكرى جنى الرابعة">
-            </div>
-            <div class="polaroid-caption">والحكاية لسه مستمرة...</div>
-          </div>
-        </div>
-
+  <section class="her-hero" id="herHome">
+    <div class="container hero-inner">
+      <div class="hero-portrait reveal">
+        <img src="HER_IMAGE.jpg" alt="Jana portrait" loading="eager">
       </div>
-
-      <div class="slider-controls">
-        <button class="slider-btn" id="nextBtn" type="button" aria-label="التالي">←</button>
-        <div class="dots" id="dots"></div>
-        <button class="slider-btn" id="prevBtn" type="button" aria-label="السابق">→</button>
+      <div class="hero-content reveal">
+        <div class="hero-name">FOR JANA · WITH LOVE</div>
+        <h1 class="hero-title">MY<br><em>FAVORITE</em><br>PLACE</h1>
+        <p class="hero-message">Some people become a memory. You became a whole little world — a place I keep coming back to.</p>
+        <div class="hero-meta">
+          <button class="btn gold interactive" data-scroll="herLetter">READ THE LETTER</button>
+          <button class="btn interactive" data-scroll="herMemories">OPEN MEMORIES</button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- =========================================================
-     VIDEO
-========================================================= -->
-<section class="video-section" id="video">
-  <div class="container reveal">
-    <div class="section-title">
-      <span>03.5 — OUR LITTLE VIDEO</span>
-      <h2>فيديو لينا 🎬</h2>
-      <p>لحظة صغيرة من حكايتنا... خليها دايمًا قدامنا. ♡</p>
+  <section class="section" id="herStory">
+    <div class="container">
+      <div class="section-head split reveal">
+        <div>
+          <div class="eyebrow">02 — OUR STORY</div>
+          <h2 class="section-title">The little moments that became everything.</h2>
+          <p class="section-copy">Edit every line directly in this HTML. These are placeholders for your real memories.</p>
+        </div>
+        <span class="section-number">LOVE / 001</span>
+      </div>
+      <div class="story-grid">
+        <article class="story-item reveal">
+          <div class="story-year">CHAPTER 01</div>
+          <h3>FIRST DAY</h3>
+          <p>Write the first moment here. The place, the date, the feeling — anything you want to keep.</p>
+        </article>
+        <article class="story-item reveal">
+          <div class="story-year">CHAPTER 02</div>
+          <h3>FIRST MEMORY</h3>
+          <p>Write about the first memory that still makes you smile when you remember it.</p>
+        </article>
+        <article class="story-item reveal">
+          <div class="story-year">CHAPTER 03</div>
+          <h3>EVERYTHING CHANGED</h3>
+          <p>Describe the moment when an ordinary day quietly became part of your story.</p>
+        </article>
+        <article class="story-item reveal">
+          <div class="story-year">CHAPTER 04</div>
+          <h3>TODAY</h3>
+          <p>And this is where the story currently lives. Not the ending — just the latest page.</p>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <div class="video-bubble">
-      <div class="video-frame">
-        <video id="memoryVideo"
-               controls
-               playsinline
-               preload="metadata"
-               poster="assets/images/video-cover.jpg">
-          <source src="assets/video/jana-memory.mp4" type="video/mp4">
-          المتصفح بتاعك لا يدعم تشغيل الفيديو.
+  <section class="section alt" id="herMemories">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">03 — OUR MEMORIES</div>
+        <h2 class="section-title">Frames I never want to lose.</h2>
+        <p class="section-copy">Replace the image files without changing their names.</p>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item reveal"><img src="HER_MEMORY_01.jpg" alt="Our memory 01" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="HER_MEMORY_02.jpg" alt="Our memory 02" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="HER_MEMORY_03.jpg" alt="Our memory 03" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="HER_MEMORY_04.jpg" alt="Our memory 04" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="HER_MEMORY_05.jpg" alt="Our memory 05" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="HER_MEMORY_06.jpg" alt="Our memory 06" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="herLetter">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">04 — A LETTER FOR YOU</div>
+        <h2 class="section-title">Open when you need a reminder.</h2>
+      </div>
+      <div class="letter-wrap">
+        <article class="letter-card closed reveal" id="letterCard" tabindex="0" aria-label="Open the love letter">
+          <div class="letter-top"><span>PRIVATE LETTER</span><span>JANA · 2026</span></div>
+          <h3>في كلام كتير نفسي أقولهولك...</h3>
+          <div class="letter-text">في كلام كتير نفسي أقولهولك، بس مهما حاولت أرتبه، دايمًا بحس إن الكلام أقل من اللي جوايا.
+
+أنتِ مش مجرد ذكرى حلوة في حياتي، أنتِ من التفاصيل اللي خلت الأيام العادية ليها معنى مختلف.
+
+شكرًا على كل لحظة، كل ضحكة، وكل ذكرى اتكتبت بينا.
+
+ودي مش نهاية الرسالة... دي مجرد صفحة من حكايتنا.
+
+— MOAZ</div>
+          <div class="letter-seal">♡</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="herVideo">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">05 — OUR LITTLE VIDEO</div>
+        <h2 class="section-title">A memory that moves.</h2>
+      </div>
+      <div class="video-frame reveal">
+        <video controls playsinline preload="metadata" poster="HER_IMAGE.jpg">
+          <source src="OUR_VIDEO.mp4" type="video/mp4">
+          Your browser does not support video playback.
         </video>
-
-        <div class="video-placeholder" id="videoPlaceholder">
-          <div class="video-icon">▶</div>
-          <strong>فيديو لينا</strong>
-          <span>حطي الفيديو داخل assets/video/jana-memory.mp4</span>
-        </div>
-      </div>
-
-      <div class="video-info">
-        <h3>لحظة تتحرك قدامنا... ♡</h3>
-        <p>صورة بتخلد ذكرى، وفيديو بيخلي الذكرى تعيش.</p>
+        <div class="video-caption"><span>OUR LITTLE VIDEO</span><span>PLAY / PAUSE</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- =========================================================
-     MUSIC
-========================================================= -->
-<section class="music-section" id="music">
-  <div class="container reveal">
-    <div class="section-title">
-      <span>04 — OUR SONG</span>
-      <h2>أغنيتنا</h2>
-      <p>لأن بعض الذكريات لازم يكون ليها لحن.</p>
-    </div>
-
-    <div class="music-card">
-      <div class="vinyl" id="vinyl" aria-hidden="true">
-        <div class="vinyl-center"></div>
+  <section class="section" id="herGifts">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">06 — LITTLE GIFTS</div>
+        <h2 class="section-title">Small things, kept forever.</h2>
       </div>
-
-      <h3>لحن جنى</h3>
-      <p>أغنية صغيرة... لذكرى كبيرة.</p>
-
-      <button class="music-btn" id="musicBtn" type="button">
-        تشغيل الموسيقى ♫
-      </button>
-
-      <audio id="audio" preload="metadata">
-        <source src="assets/song.mp3" type="audio/mpeg">
-      </audio>
+      <div class="gifts">
+        <article class="gift reveal interactive" data-gift="A tiny reminder: you are loved more than this little card can explain.">
+          <span class="gift-num">GIFT / 01</span><span class="gift-icon">I</span><h3>A LITTLE GIFT</h3><p>Click to open the message.</p>
+        </article>
+        <article class="gift reveal interactive" data-gift="If this were a real box, I would fill it with every favorite memory we have.">
+          <span class="gift-num">GIFT / 02</span><span class="gift-icon">II</span><h3>FOR YOU</h3><p>A secret message waits inside.</p>
+        </article>
+        <article class="gift reveal interactive" data-gift="For every ordinary day that became special simply because you were there.">
+          <span class="gift-num">GIFT / 03</span><span class="gift-icon">III</span><h3>KEEP THIS</h3><p>One more little note.</p>
+        </article>
+        <article class="gift reveal interactive" data-gift="The best gift is still the story we are writing together.">
+          <span class="gift-num">GIFT / 04</span><span class="gift-icon">IV</span><h3>ONE LAST THING</h3><p>Open when you're ready.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- =========================================================
-     FINAL
-========================================================= -->
-<section class="final-section">
-  <div class="container reveal">
-    <div class="final-heart">♥</div>
-    <h2>لجنى فقط...</h2>
-
-    <p>
-      يمكن الموقع كله مجرد ألوان وصور وكلام،
-      لكن كل تفصيلة فيه معمولة عشان تقول حاجة واحدة...
-      <br><br>
-      <strong>إن جنى ليها مكان مختلف.</strong>
-      <br><br>
-      وأتمنى تفضل الحكاية دي مليانة ضحك،
-      ذكريات، وتفاصيل حلوة كتير. 🧸♡
-    </p>
-
-    <div class="signature">For JANA ♡</div>
-  </div>
-</section>
-
+  <footer class="world-footer">
+    <div>
+      <div class="eyebrow" style="justify-content:center">THE NEXT PAGE IS STILL EMPTY</div>
+      <h2 class="footer-title">OUR STORY IS STILL BEING WRITTEN.</h2>
+      <div class="footer-mark">♡</div>
+      <div class="footer-actions">
+        <button class="btn gold interactive" data-back-world>BACK TO OUR WORLD</button>
+        <button class="btn interactive" data-open-world="my">ENTER MY WORLD</button>
+      </div>
+    </div>
+  </footer>
 </main>
 
-<footer>صُنع مخصوص لجنى ♡</footer>
-<div class="toast" id="toast" aria-live="polite"></div>
+<!-- =========================================================
+     MY WORLD
+========================================================= -->
+<main id="myWorld" class="page my-world">
+  <div class="world-bg">
+    <video id="myBackground" muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="MY_BACKGROUND_VIDEO.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <nav class="world-nav">
+    <div class="brand">MOAZ / DARK ARCHIVE</div>
+    <div class="nav-links" data-nav="my">
+      <button data-scroll="myHome">HOME</button>
+      <button data-scroll="myIdentity">IDENTITY</button>
+      <button data-scroll="myArchive">ARCHIVE</button>
+      <button data-scroll="myMemories">MEMORIES</button>
+      <button data-scroll="myVideo">VIDEO</button>
+    </div>
+    <div class="nav-actions">
+      <button class="music-btn interactive" id="myMusic" aria-label="Play or pause my music"><span class="music-dot"></span><span class="music-label">MUSIC / OFF</span></button>
+      <button class="icon-btn mobile-nav interactive" data-mobile-nav="my" aria-label="Open navigation">☰</button>
+    </div>
+  </nav>
+
+  <audio id="myAudio" preload="metadata" loop>
+    <source src="MY_SONG.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="my-hero" id="myHome">
+    <div class="container hero-inner">
+      <div class="hero-portrait reveal">
+        <img src="MY_IMAGE.jpg" alt="Moaz portrait" loading="eager">
+      </div>
+      <div class="hero-content reveal">
+        <div class="hero-name">PERSONAL ARCHIVE · MOAZ</div>
+        <h1 class="hero-title">MY<br><em>WORLD</em></h1>
+        <p class="hero-message">A private archive of identity, memories, thoughts, unfinished ideas and the moments that shaped the person behind the screen.</p>
+        <div class="hero-meta">
+          <button class="btn gold interactive" data-scroll="myIdentity">ENTER IDENTITY</button>
+          <button class="btn interactive" data-scroll="myArchive">OPEN ARCHIVE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="myIdentity">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">02 — IDENTITY</div>
+        <h2 class="section-title">A page about the person behind the archive.</h2>
+      </div>
+      <div class="identity-grid">
+        <p class="identity-copy reveal">Write your own story here. Talk about who you are, what you build, what you believe in, what you are learning, and the things you want your future self to remember.</p>
+        <div class="spec-list reveal">
+          <div class="spec"><span>NAME</span><span>MOAZ</span></div>
+          <div class="spec"><span>ROLE</span><span>CREATIVE DEVELOPER</span></div>
+          <div class="spec"><span>STYLE</span><span>DARK / CINEMATIC / RETRO</span></div>
+          <div class="spec"><span>ARCHIVE</span><span>PRIVATE / PERSONAL</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="myArchive">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">03 — ARCHIVE</div>
+        <h2 class="section-title">Files from another side of the story.</h2>
+      </div>
+      <div class="archive-grid">
+        <article class="archive-card reveal"><span class="archive-index">FILE 001</span><h3>MEMORIES</h3><p>Moments worth keeping.</p></article>
+        <article class="archive-card reveal"><span class="archive-index">FILE 002</span><h3>MOMENTS</h3><p>Scenes that changed something.</p></article>
+        <article class="archive-card reveal"><span class="archive-index">FILE 003</span><h3>THOUGHTS</h3><p>Things that never made it outside.</p></article>
+        <article class="archive-card reveal"><span class="archive-index">FILE 004</span><h3>DREAMS</h3><p>Ideas for the next chapter.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="myMemories">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">04 — TIMELINE</div>
+        <h2 class="section-title">Selected moments.</h2>
+      </div>
+      <div class="timeline">
+        <article class="time-item reveal"><span class="time-dot"></span><span class="time-date">CHAPTER 01</span><h3>THE BEGINNING</h3><p>Replace this with the first important chapter of your personal story.</p></article>
+        <article class="time-item reveal"><span class="time-dot"></span><span class="time-date">CHAPTER 02</span><h3>THE TURN</h3><p>A decision, a person, a project or a moment that changed your direction.</p></article>
+        <article class="time-item reveal"><span class="time-dot"></span><span class="time-date">CHAPTER 03</span><h3>THE BUILD</h3><p>The things you are creating right now belong here.</p></article>
+        <article class="time-item reveal"><span class="time-dot"></span><span class="time-date">CHAPTER 04</span><h3>NEXT</h3><p>An unfinished chapter intentionally waiting for the future.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">05 — FAVORITES</div>
+        <h2 class="section-title">Things that feel like me.</h2>
+      </div>
+      <div class="favorites">
+        <article class="favorite reveal"><small>01 / MUSIC</small><h3>THE SOUND</h3><p>Add a favorite artist, song or soundtrack.</p></article>
+        <article class="favorite reveal"><small>02 / FILM</small><h3>THE FRAME</h3><p>Add a film, anime or visual world you love.</p></article>
+        <article class="favorite reveal"><small>03 / BUILD</small><h3>THE CRAFT</h3><p>Add the project or skill you are proud of.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="myVideo">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">06 — MY VIDEO</div>
+        <h2 class="section-title">A moving piece of the archive.</h2>
+      </div>
+      <div class="video-frame reveal">
+        <video controls playsinline preload="metadata" poster="MY_IMAGE.jpg">
+          <source src="MY_VIDEO.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+        <div class="video-caption"><span>MY VIDEO</span><span>ARCHIVE / PLAY</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">07 — MY GALLERY</div>
+        <h2 class="section-title">Frames from my side.</h2>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item reveal"><img src="MY_IMAGE_01.jpg" alt="Personal memory 01" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="MY_IMAGE_02.jpg" alt="Personal memory 02" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="MY_IMAGE_03.jpg" alt="Personal memory 03" loading="lazy"></div>
+        <div class="gallery-item reveal"><img src="MY_IMAGE_04.jpg" alt="Personal memory 04" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="world-footer">
+    <div>
+      <div class="eyebrow" style="justify-content:center">END OF FILE</div>
+      <h2 class="footer-title">THE ARCHIVE REMAINS OPEN.</h2>
+      <div class="footer-mark">—</div>
+      <div class="footer-actions">
+        <button class="btn gold interactive" data-back-world>BACK TO OUR WORLD</button>
+        <button class="btn interactive" data-open-world="her">ENTER HER WORLD</button>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- =========================================================
+     LIGHTBOX / TOAST
+========================================================= -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="icon-btn lightbox-close interactive" id="lightboxClose" aria-label="Close image">×</button>
+  <img id="lightboxImage" src="" alt="Expanded memory">
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-"use strict";
-
 /* =========================================================
-   HELPERS
+   JAVASCRIPT — MEDIA CONFIGURATION
 ========================================================= */
-const $ = (selector, parent = document) => parent.querySelector(selector);
-const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+const MEDIA = {
+  herImage: "HER_IMAGE.jpg",
+  myImage: "MY_IMAGE.jpg",
 
-/* =========================================================
-   OPENING
-========================================================= */
-const opening = $("#opening");
-const yesBtn = $("#yesBtn");
-const noBtn = $("#noBtn");
-const openingNote = $("#openingNote");
+  herBackground: "HER_BACKGROUND_VIDEO.mp4",
+  myBackground: "MY_BACKGROUND_VIDEO.mp4",
 
-let yesScale = 1;
-let noScale = 1;
-let noClicks = 0;
+  herSong: "HER_SONG.mp3",
+  mySong: "MY_SONG.mp3",
 
-const noMessages = [
-  "متأكدة؟ 🥺",
-  "جنى فكري فيها تاني 😂",
-  "متأكدة إنك عايزة تفكري؟ 💗",
-  "طيب ليه تفكري 😑",
-  "بصي زرار أكيد كبر أهو 👀",
-  "آخر فرصة يا جنى ❤️",
-  "خلاص كده واضح إن أكيد هي الإجابة 😌"
-];
-
-noBtn.addEventListener("click", () => {
-  noClicks++;
-  yesScale = Math.min(1.75, yesScale + 0.12);
-  noScale = Math.max(0.3, noScale - 0.1);
-
-  yesBtn.style.transform = `scale(${yesScale})`;
-  noBtn.style.transform = `scale(${noScale})`;
-  noBtn.style.opacity = String(Math.max(0.3, noScale));
-  openingNote.textContent = noMessages[Math.min(noClicks - 1, noMessages.length - 1)];
-
-  if(noClicks >= 3){
-    noBtn.style.position = "relative";
-    noBtn.style.left = `${(Math.random() - .5) * 90}px`;
-    noBtn.style.top = `${(Math.random() - .5) * 40}px`;
-  }
-});
-
-yesBtn.addEventListener("click", () => {
-  openingNote.textContent = "كنت عارف إن جنى هتختار أكيد 😍";
-  createHeartBurst();
-
-  setTimeout(() => {
-    opening.classList.add("hide");
-    document.body.classList.remove("locked");
-  }, 650);
-});
-
-document.body.classList.add("locked");
-
-/* =========================================================
-   SCROLL
-========================================================= */
-function scrollToSection(id){
-  const section = document.getElementById(id);
-  if(section) section.scrollIntoView({behavior:"smooth", block:"start"});
-}
-
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
-const heartsContainer = $("#heartsContainer");
-const heartSymbols = ["♥","♡","❤","❣"];
-
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-  heart.style.left = `${Math.random() * 100}%`;
-  heart.style.fontSize = `${12 + Math.random() * 24}px`;
-
-  const duration = 7 + Math.random() * 8;
-  heart.style.animationDuration = `${duration}s`;
-
-  heartsContainer.appendChild(heart);
-  setTimeout(() => heart.remove(), (duration + 1) * 1000);
-}
-
-setInterval(createHeart, 1000);
-
-/* =========================================================
-   HEART BURST
-========================================================= */
-function createHeartBurst(){
-  for(let i = 0; i < 25; i++){
-    setTimeout(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "♥";
-      heart.style.left = `${35 + Math.random() * 30}%`;
-      heart.style.bottom = `${25 + Math.random() * 20}%`;
-      heart.style.fontSize = `${18 + Math.random() * 28}px`;
-      heart.style.animationDuration = `${3 + Math.random() * 3}s`;
-
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 6500);
-    }, i * 55);
-  }
-}
-
-/* =========================================================
-   TEDDIES
-========================================================= */
-const teddyCards = $$(".teddy");
-const teddySelection = $("#teddySelection");
-
-teddyCards.forEach(teddy => {
-  teddy.addEventListener("click", () => {
-    teddyCards.forEach(item => item.classList.remove("selected"));
-    teddy.classList.add("selected");
-
-    teddySelection.classList.remove("show-message");
-
-    setTimeout(() => {
-      teddySelection.textContent = teddy.dataset.message || "";
-      teddySelection.classList.add("show-message");
-    }, 120);
-
-    teddyBurst(teddy);
-  });
-});
-
-function teddyBurst(teddy){
-  const rect = teddy.getBoundingClientRect();
-
-  for(let i = 0; i < 10; i++){
-    const item = document.createElement("div");
-    item.textContent = i % 2 ? "♡" : "✦";
-    item.className = "effect-particle";
-
-    item.style.left = `${rect.left + rect.width / 2}px`;
-    item.style.top = `${rect.top + rect.height / 2}px`;
-    item.style.color = i % 2 ? "var(--primary)" : "var(--accent)";
-
-    document.body.appendChild(item);
-
-    const angle = Math.PI * 2 * i / 10;
-    const distance = 60 + Math.random() * 70;
-
-    item.animate([
-      {transform:"translate(-50%,-50%) scale(.4)", opacity:0},
-      {transform:`translate(calc(-50% + ${Math.cos(angle)*distance}px),calc(-50% + ${Math.sin(angle)*distance}px)) scale(1)`, opacity:1},
-      {transform:`translate(calc(-50% + ${Math.cos(angle)*distance*1.4}px),calc(-50% + ${Math.sin(angle)*distance*1.4}px)) scale(.2)`, opacity:0}
-    ], {
-      duration:1100,
-      easing:"cubic-bezier(.2,.8,.2,1)"
-    });
-
-    setTimeout(() => item.remove(), 1200);
-  }
-}
-
-/* =========================================================
-   LETTER
-========================================================= */
-const envelope = $("#envelope");
-const letterText = $("#letterText");
-
-const letterMessage =
-`يا جنى...
-
-في كلام كتير نفسي أقولهولك، ويمكن مهما كتبت مش هقدر أوصل كل اللي جوايا، بس حبيت أسيبلك رسالة صغيرة تفضل قدامك.
-
-إنتِ من الناس اللي وجودهم بيضيف معنى للحاجات البسيطة. ضحكة، كلمة، موقف صغير... تفاصيل يمكن تعدي عادي، لكن مع وجودك بتفضل لها قيمة مختلفة.
-
-أنا مقدّر كل لحظة حلوة اتجمعت في الحكاية دي، ومقدّر كل مرة قدرتِ تخلي يوم عادي يبقى ألطف.
-
-نفسي تفضلي دايمًا شايفة قد إيه وجودك مهم، وقد إيه ابتسامتك تستاهل أيام كتير حلوة.
-
-ومهما كانت الحكاية بسيطة، أحب تفتكري إن كل تفصيلة هنا اتعملت مخصوص عشان تفرحك وتقولك:
-
-إنتِ جنى...
-والاسم ده لوحده بقى مرتبط عندي بذكريات حلوة كتير. 🤍
-
-خلي الرسالة دي عندك، مش عشان هي أجمل كلام ممكن يتقال، لكن عشان كل كلمة فيها طالعة بصدق.
-
-♡ جوجو`;
-
-let letterOpened = false;
-
-function openLetter(){
-  if(letterOpened) return;
-  letterOpened = true;
-  envelope.classList.add("open");
-  setTimeout(typeLetter, 800);
-}
-
-envelope.addEventListener("click", openLetter);
-envelope.addEventListener("keydown", event => {
-  if(event.key === "Enter" || event.key === " "){
-    event.preventDefault();
-    openLetter();
-  }
-});
-
-function typeLetter(){
-  letterText.textContent = "";
-  let index = 0;
-
-  const cursor = document.createElement("span");
-  cursor.className = "typing-cursor";
-  letterText.appendChild(cursor);
-
-  function type(){
-    if(index >= letterMessage.length){
-      cursor.remove();
-      return;
-    }
-
-    const char = letterMessage[index++];
-    cursor.insertAdjacentText("beforebegin", char);
-
-    let delay = 24;
-    if(char === "\n") delay = 90;
-    if(/[.،!؟]/.test(char)) delay = 135;
-
-    setTimeout(type, delay);
-  }
-
-  type();
-}
-
-/* =========================================================
-   SLIDER
-========================================================= */
-const slides = $("#slides");
-const slideItems = $$(".slide");
-const dotsContainer = $("#dots");
-const nextBtn = $("#nextBtn");
-const prevBtn = $("#prevBtn");
-
-let currentSlide = 0;
-
-slideItems.forEach((_, index) => {
-  const dot = document.createElement("button");
-  dot.type = "button";
-  dot.className = `dot${index === 0 ? " active" : ""}`;
-  dot.setAttribute("aria-label", `الصورة ${index + 1}`);
-  dot.addEventListener("click", () => {
-    currentSlide = index;
-    updateSlider();
-  });
-  dotsContainer.appendChild(dot);
-});
-
-function updateSlider(){
-  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-  $$(".dot", dotsContainer).forEach((dot, index) => {
-    dot.classList.toggle("active", index === currentSlide);
-  });
-}
-
-nextBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide + 1) % slideItems.length;
-  updateSlider();
-});
-
-prevBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide - 1 + slideItems.length) % slideItems.length;
-  updateSlider();
-});
-
-/* Swipe */
-let touchStartX = 0;
-slides.addEventListener("touchstart", e => {
-  touchStartX = e.changedTouches[0].screenX;
-}, {passive:true});
-
-slides.addEventListener("touchend", e => {
-  const distance = e.changedTouches[0].screenX - touchStartX;
-  if(Math.abs(distance) < 50) return;
-  distance < 0 ? nextBtn.click() : prevBtn.click();
-}, {passive:true});
-
-/* =========================================================
-   VIDEO
-   FIX: لا يوجد videoFile هنا لأن زر الرفع غير موجود في HTML
-========================================================= */
-const memoryVideo = $("#memoryVideo");
-const videoPlaceholder = $("#videoPlaceholder");
-
-if(memoryVideo){
-  memoryVideo.addEventListener("loadeddata", () => {
-    if(videoPlaceholder) videoPlaceholder.classList.add("hidden");
-  });
-
-  memoryVideo.addEventListener("error", () => {
-    if(videoPlaceholder) videoPlaceholder.classList.remove("hidden");
-  });
-
-  memoryVideo.addEventListener("play", () => {
-    if(videoPlaceholder) videoPlaceholder.classList.add("hidden");
-  });
-}
-
-/* =========================================================
-   MUSIC
-========================================================= */
-const audio = $("#audio");
-const musicBtn = $("#musicBtn");
-const vinyl = $("#vinyl");
-
-let musicPlaying = false;
-
-musicBtn.addEventListener("click", async () => {
-  try{
-    if(!musicPlaying){
-      await audio.play();
-      musicPlaying = true;
-      vinyl.classList.add("playing");
-      musicBtn.textContent = "إيقاف الموسيقى ❚❚";
-    }else{
-      audio.pause();
-      musicPlaying = false;
-      vinyl.classList.remove("playing");
-      musicBtn.textContent = "تشغيل الموسيقى ♫";
-    }
-  }catch{
-    showToast("تأكد إن assets/song.mp3 موجودة.");
-  }
-});
-
-audio.addEventListener("ended", () => {
-  musicPlaying = false;
-  vinyl.classList.remove("playing");
-  musicBtn.textContent = "تشغيل الموسيقى ♫";
-});
-
-/* =========================================================
-   THEME SWITCHER — 4 أشكال كاملة
-========================================================= */
-const themeSwitcher = $("#themeSwitcher");
-const themeMainBtn = $("#themeMainBtn");
-const themeOptions = $$(".theme-option");
-
-const themeNames = {
-  pink: "تم اختيار Pink Love ♡",
-  night: "تم اختيار Dream Night ✦",
-  rose: "تم اختيار Rose Dream ♡",
-  cherry: "تم اختيار Cherry Velvet ♥"
+  ourVideo: "OUR_VIDEO.mp4",
+  myVideo: "MY_VIDEO.mp4"
 };
 
-function applyTheme(theme){
-  document.body.classList.remove("theme-night","theme-rose","theme-cherry");
+const SITE_PASSWORD = "love";
 
-  if(theme !== "pink"){
-    document.body.classList.add(`theme-${theme}`);
-  }
+/* =========================================================
+   JAVASCRIPT — DOM
+========================================================= */
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-  localStorage.setItem("jana-theme", theme);
-  showToast(themeNames[theme] || "تم تغيير الشكل ♡");
-}
+const loginScreen = $("#loginScreen");
+const worldSelector = $("#worldSelector");
+const herWorld = $("#herWorld");
+const myWorld = $("#myWorld");
+const loginForm = $("#loginForm");
+const passwordInput = $("#passwordInput");
+const passwordRow = $("#passwordRow");
+const loginError = $("#loginError");
+const pageTransition = $("#pageTransition");
+const toast = $("#toast");
 
-const savedTheme = localStorage.getItem("jana-theme");
-if(savedTheme && ["pink","night","rose","cherry"].includes(savedTheme)){
-  applyTheme(savedTheme);
-}
+const herAudio = $("#herAudio");
+const myAudio = $("#myAudio");
+const herBackground = $("#herBackground");
+const myBackground = $("#myBackground");
 
-themeMainBtn.addEventListener("click", event => {
-  event.stopPropagation();
-  const open = themeSwitcher.classList.toggle("open");
-  themeMainBtn.setAttribute("aria-expanded", String(open));
-});
+/* =========================================================
+   JAVASCRIPT — MEDIA CONFIGURATION APPLICATION
+========================================================= */
+function applyMediaConfig(){
+  const images = {
+    "#loginHerImage": MEDIA.herImage,
+    "#selectorHerImage": MEDIA.herImage,
+    "#loginMyImage": MEDIA.myImage,
+    "#selectorMyImage": MEDIA.myImage
+  };
 
-themeOptions.forEach(option => {
-  option.addEventListener("click", () => {
-    applyTheme(option.dataset.theme);
-    themeSwitcher.classList.remove("open");
-    themeMainBtn.setAttribute("aria-expanded","false");
+  Object.entries(images).forEach(([selector,src]) => {
+    const el = $(selector);
+    if(el) el.src = src;
   });
-});
 
-document.addEventListener("click", event => {
-  if(!themeSwitcher.contains(event.target)){
-    themeSwitcher.classList.remove("open");
-    themeMainBtn.setAttribute("aria-expanded","false");
+  const herHeroImage = $("#herWorld .hero-portrait img");
+  const myHeroImage = $("#myWorld .hero-portrait img");
+  if(herHeroImage) herHeroImage.src = MEDIA.herImage;
+  if(myHeroImage) myHeroImage.src = MEDIA.myImage;
+
+  if(herBackground) herBackground.querySelector("source").src = MEDIA.herBackground;
+  if(myBackground) myBackground.querySelector("source").src = MEDIA.myBackground;
+
+  herAudio.querySelector("source").src = MEDIA.herSong;
+  myAudio.querySelector("source").src = MEDIA.mySong;
+
+  const herVideo = $("#herVideo video source");
+  const myVideo = $("#myVideo video source");
+  if(herVideo) herVideo.src = MEDIA.ourVideo;
+  if(myVideo) myVideo.src = MEDIA.myVideo;
+
+  herBackground.load();
+  myBackground.load();
+  herAudio.load();
+  myAudio.load();
+}
+
+/* =========================================================
+   JAVASCRIPT — LOGIN
+========================================================= */
+function unlockSite(){
+  document.body.classList.remove("is-locked");
+  loginScreen.style.transition = "opacity 1s ease, transform 1s ease, filter 1s ease";
+  loginScreen.style.opacity = "0";
+  loginScreen.style.transform = "scale(1.045)";
+  loginScreen.style.filter = "blur(10px)";
+
+  setTimeout(() => {
+    loginScreen.style.display = "none";
+    worldSelector.classList.add("active");
+    worldSelector.style.opacity = "0";
+    worldSelector.style.transform = "scale(.985)";
+    requestAnimationFrame(() => {
+      worldSelector.style.transition = "opacity .9s ease, transform .9s ease";
+      worldSelector.style.opacity = "1";
+      worldSelector.style.transform = "none";
+    });
+    window.scrollTo({top:0,behavior:"auto"});
+  }, 850);
+}
+
+loginForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const value = passwordInput.value.trim();
+
+  if(value === SITE_PASSWORD){
+    loginError.classList.remove("show");
+    passwordInput.blur();
+    unlockSite();
+  }else{
+    passwordRow.classList.remove("shake");
+    void passwordRow.offsetWidth;
+    passwordRow.classList.add("shake");
+    loginError.classList.add("show");
+    passwordInput.select();
   }
 });
 
 /* =========================================================
-   REVEAL
+   JAVASCRIPT — PARTICLES
 ========================================================= */
-const revealElements = $$(".reveal");
+const particleBox = $("#particles");
+for(let i=0;i<32;i++){
+  const p = document.createElement("span");
+  p.className = "particle";
+  p.style.left = `${Math.random()*100}%`;
+  p.style.animationDuration = `${7 + Math.random()*12}s`;
+  p.style.animationDelay = `${-Math.random()*15}s`;
+  p.style.opacity = `${.15 + Math.random()*.55}`;
+  particleBox.appendChild(p);
+}
+for(let i=0;i<9;i++){
+  const h = document.createElement("span");
+  h.className = "heart-float";
+  h.textContent = "♡";
+  h.style.left = `${5 + Math.random()*90}%`;
+  h.style.animationDuration = `${10 + Math.random()*11}s`;
+  h.style.animationDelay = `${-Math.random()*14}s`;
+  h.style.fontSize = `${16 + Math.random()*22}px`;
+  particleBox.appendChild(h);
+}
 
-if("IntersectionObserver" in window){
-  const observer = new IntersectionObserver(entries => {
+/* =========================================================
+   JAVASCRIPT — WORLD NAVIGATION
+========================================================= */
+let currentWorld = null;
+
+function transitionTo(callback){
+  pageTransition.classList.remove("run");
+  void pageTransition.offsetWidth;
+  pageTransition.classList.add("run");
+  setTimeout(callback, 390);
+}
+
+function stopAllWorldMedia(){
+  [herAudio,myAudio].forEach(audio => {
+    audio.pause();
+  });
+  [herBackground,myBackground].forEach(video => {
+    video.pause();
+  });
+
+  $$("#herWorld video, #myWorld video").forEach(video => {
+    if(video !== herBackground && video !== myBackground){
+      video.pause();
+    }
+  });
+}
+
+function openWorld(world){
+  transitionTo(() => {
+    stopAllWorldMedia();
+
+    worldSelector.classList.remove("active");
+    herWorld.classList.remove("active");
+    myWorld.classList.remove("active");
+
+    const target = world === "her" ? herWorld : myWorld;
+    target.classList.add("active");
+    currentWorld = world;
+
+    const bg = world === "her" ? herBackground : myBackground;
+    bg.play().catch(() => {});
+
+    window.scrollTo({top:0,behavior:"auto"});
+    refreshReveals();
+
+    updateNavActive();
+  });
+}
+
+function backToWorld(){
+  transitionTo(() => {
+    stopAllWorldMedia();
+    herWorld.classList.remove("active");
+    myWorld.classList.remove("active");
+    worldSelector.classList.add("active");
+    currentWorld = null;
+    window.scrollTo({top:0,behavior:"auto"});
+  });
+}
+
+$$("[data-open-world]").forEach(el => {
+  el.addEventListener("click", () => openWorld(el.dataset.openWorld));
+  el.addEventListener("keydown", event => {
+    if(event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openWorld(el.dataset.openWorld);
+    }
+  });
+});
+
+$$("[data-back-world]").forEach(btn => btn.addEventListener("click", backToWorld));
+
+/* =========================================================
+   JAVASCRIPT — SMOOTH SECTION NAV
+========================================================= */
+$$("[data-scroll]").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = document.getElementById(button.dataset.scroll);
+    if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+});
+
+function updateNavActive(){
+  if(!currentWorld) return;
+  const page = currentWorld === "her" ? herWorld : myWorld;
+  const buttons = $$("[data-scroll]", page);
+  const sections = buttons.map(btn => document.getElementById(btn.dataset.scroll)).filter(Boolean);
+
+  let activeId = sections[0]?.id;
+  sections.forEach(section => {
+    if(window.scrollY >= section.offsetTop - 180) activeId = section.id;
+  });
+
+  buttons.forEach(btn => btn.classList.toggle("active", btn.dataset.scroll === activeId));
+}
+
+window.addEventListener("scroll", updateNavActive, {passive:true});
+
+/* =========================================================
+   JAVASCRIPT — MUSIC SYSTEM
+========================================================= */
+let activeAudio = null;
+
+function setupMusic(button,audio,labelOn,labelOff){
+  button.addEventListener("click", async () => {
+    if(activeAudio && activeAudio !== audio){
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+      $$(".music-btn").forEach(btn => btn.classList.remove("playing"));
+      $$(".music-label").forEach(label => {
+        if(label.closest("#herMusic")) label.textContent = "♪ MUSIC";
+        if(label.closest("#myMusic")) label.textContent = "MUSIC / OFF";
+      });
+    }
+
+    if(audio.paused){
+      try{
+        await audio.play();
+        activeAudio = audio;
+        button.classList.add("playing");
+        $(".music-label",button).textContent = labelOn;
+      }catch{
+        showToast("ضع ملف الأغنية في نفس مجلد index.html ثم اضغط مرة أخرى.");
+      }
+    }else{
+      audio.pause();
+      button.classList.remove("playing");
+      $(".music-label",button).textContent = labelOff;
+    }
+  });
+}
+
+setupMusic($("#herMusic"),herAudio,"♪ PLAYING","♪ MUSIC");
+setupMusic($("#myMusic"),myAudio,"MUSIC / ON","MUSIC / OFF");
+
+/* =========================================================
+   JAVASCRIPT — REVEAL ON SCROLL
+========================================================= */
+let revealObserver;
+
+function createRevealObserver(){
+  if(revealObserver) revealObserver.disconnect();
+
+  revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
-  }, {threshold:.12});
+  },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
 
-  revealElements.forEach(element => observer.observe(element));
-}else{
-  revealElements.forEach(element => element.classList.add("visible"));
+  $$(".reveal").forEach(el => revealObserver.observe(el));
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
-const toast = $("#toast");
-let toastTimer;
+function refreshReveals(){
+  $$(".reveal").forEach(el => el.classList.remove("visible"));
+  createRevealObserver();
+}
 
+createRevealObserver();
+
+/* =========================================================
+   JAVASCRIPT — LETTER
+========================================================= */
+const letterCard = $("#letterCard");
+function toggleLetter(){
+  letterCard.classList.toggle("closed");
+  showToast(letterCard.classList.contains("closed") ? "Letter closed." : "The letter is open.");
+}
+letterCard.addEventListener("click", toggleLetter);
+letterCard.addEventListener("keydown", event => {
+  if(event.key === "Enter" || event.key === " "){
+    event.preventDefault();
+    toggleLetter();
+  }
+});
+
+/* =========================================================
+   JAVASCRIPT — GIFTS
+========================================================= */
+$$(".gift").forEach(gift => {
+  gift.addEventListener("click", () => {
+    gift.classList.toggle("open");
+    showToast(gift.dataset.gift);
+  });
+});
+
+/* =========================================================
+   JAVASCRIPT — LIGHTBOX
+========================================================= */
+const lightbox = $("#lightbox");
+const lightboxImage = $("#lightboxImage");
+
+$$(".gallery-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const img = $("img",item);
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden","false");
+    document.body.classList.add("is-locked");
+  });
+});
+
+function closeLightbox(){
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden","true");
+  document.body.classList.remove("is-locked");
+}
+$("#lightboxClose").addEventListener("click",closeLightbox);
+lightbox.addEventListener("click",event => {
+  if(event.target === lightbox) closeLightbox();
+});
+document.addEventListener("keydown",event => {
+  if(event.key === "Escape"){
+    closeLightbox();
+  }
+});
+
+/* =========================================================
+   JAVASCRIPT — VIDEO MANAGEMENT
+========================================================= */
+$$("video").forEach(video => {
+  video.addEventListener("play", () => {
+    $$("video").forEach(other => {
+      if(other !== video && !other.paused) other.pause();
+    });
+  });
+});
+
+/* =========================================================
+   JAVASCRIPT — MOBILE NAV
+========================================================= */
+$$("[data-mobile-nav]").forEach(button => {
+  button.addEventListener("click", () => {
+    const world = button.dataset.mobileNav;
+    const page = world === "her" ? herWorld : myWorld;
+    const links = $(".nav-links",page);
+
+    if(!links) return;
+
+    const open = links.style.display === "flex";
+    links.style.display = open ? "" : "flex";
+    if(!open){
+      Object.assign(links.style,{
+        position:"absolute",
+        top:"64px",
+        left:"14px",
+        right:"14px",
+        padding:"18px",
+        flexDirection:"column",
+        gap:"18px",
+        background:"rgba(8,5,7,.96)",
+        border:"1px solid rgba(255,255,255,.12)",
+        backdropFilter:"blur(16px)"
+      });
+    }
+  });
+});
+
+$$(".nav-links button").forEach(button => {
+  button.addEventListener("click", () => {
+    if(window.innerWidth <= 900){
+      const links = button.parentElement;
+      links.style.display = "";
+    }
+  });
+});
+
+/* =========================================================
+   JAVASCRIPT — TOAST
+========================================================= */
+let toastTimer;
 function showToast(message){
   clearTimeout(toastTimer);
   toast.textContent = message;
   toast.classList.add("show");
-
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2800);
+  toastTimer = setTimeout(() => toast.classList.remove("show"),2800);
 }
 
 /* =========================================================
-   KEYBOARD SLIDER
+   JAVASCRIPT — CUSTOM CURSOR
 ========================================================= */
-document.addEventListener("keydown", event => {
-  if(event.target.matches("input,textarea,button")) return;
+const cursorDot = $("#cursorDot");
+const cursorRing = $("#cursorRing");
 
-  if(event.key === "ArrowLeft") nextBtn.click();
-  if(event.key === "ArrowRight") prevBtn.click();
-});
+if(window.matchMedia("(pointer:fine)").matches){
+  window.addEventListener("mousemove",event => {
+    cursorDot.style.opacity = "1";
+    cursorRing.style.opacity = "1";
+    cursorDot.style.left = `${event.clientX}px`;
+    cursorDot.style.top = `${event.clientY}px`;
+    cursorRing.style.left = `${event.clientX}px`;
+    cursorRing.style.top = `${event.clientY}px`;
+  });
+
+  const cursorTargets = "button,.interactive,.gallery-item,.gift,.letter-card,input";
+  document.addEventListener("mouseover",event => {
+    if(event.target.closest(cursorTargets)) cursorRing.classList.add("hover");
+  });
+  document.addEventListener("mouseout",event => {
+    if(event.target.closest(cursorTargets)) cursorRing.classList.remove("hover");
+  });
+}else{
+  cursorDot.style.display = "none";
+  cursorRing.style.display = "none";
+}
+
+/* =========================================================
+   JAVASCRIPT — IMAGE ERROR FALLBACK
+========================================================= */
+document.addEventListener("error",event => {
+  if(event.target.tagName === "IMG"){
+    event.target.style.background = "linear-gradient(135deg,#16090e,#080607)";
+    event.target.alt = `${event.target.alt || "Image"} — replace the configured file`;
+  }
+},true);
+
+/* =========================================================
+   JAVASCRIPT — INITIALIZATION
+========================================================= */
+applyMediaConfig();
+updateNavActive();
 </script>
-
 </body>
 </html>
