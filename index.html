@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>JANA ♡ همسات الحب</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- =========================
+       FONTS
+  ========================= -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;500;600;700&family=Great+Vibes&display=swap"
+    rel="stylesheet"
+  >
+
 
   <style>
+
+    /* =========================================================
+       ROOT
+    ========================================================= */
+
     :root{
+
       --pink:#e89aaa;
       --pink2:#f7c8d2;
+
       --rose:#b84d68;
+
       --deep:#541d31;
+
       --wine:#3a1424;
+
       --cream:#fff8f4;
+
       --paper:#fffaf7;
+
       --shadow:rgba(82,28,48,.18);
+
     }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
 
     *{
       margin:0;
@@ -28,1062 +67,2168 @@
       box-sizing:border-box;
     }
 
+
     html{
       scroll-behavior:smooth;
     }
 
+
     body{
+
       background:
-        radial-gradient(circle at 10% 10%,rgba(255,210,220,.45),transparent 30%),
-        radial-gradient(circle at 90% 20%,rgba(255,235,238,.7),transparent 30%),
-        linear-gradient(135deg,#fff8f5,#fdecef 45%,#fff9f7);
+
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(255,210,220,.45),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255,235,238,.7),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #fff8f5,
+          #fdecef 45%,
+          #fff9f7
+        );
+
       color:var(--deep);
+
       font-family:"Cairo",sans-serif;
+
       overflow-x:hidden;
+
     }
 
+
     body::before{
+
       content:"";
+
       position:fixed;
+
       inset:0;
+
       pointer-events:none;
+
       z-index:9999;
+
       opacity:.12;
+
       background-image:
-        radial-gradient(rgba(80,20,40,.3) .5px,transparent .5px);
+        radial-gradient(
+          rgba(80,20,40,.3) .5px,
+          transparent .5px
+        );
+
       background-size:5px 5px;
+
       mix-blend-mode:multiply;
+
     }
+
 
     button{
       font-family:inherit;
     }
+
 
     a{
       color:inherit;
       text-decoration:none;
     }
 
-    /* =========================
+
+    /* =========================================================
        OPENING
-    ========================= */
+    ========================================================= */
 
     .opening{
+
       position:fixed;
+
       inset:0;
+
       z-index:1000;
+
       display:flex;
+
       justify-content:center;
+
       align-items:center;
+
       background:
-        radial-gradient(circle at center,#ffe9ef 0%,#f8ccd7 45%,#541d31 150%);
-      transition:opacity 1s ease,visibility 1s ease;
+
+        radial-gradient(
+          circle at center,
+          #ffe9ef 0%,
+          #f8ccd7 45%,
+          #541d31 150%
+        );
+
+      transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
     }
+
 
     .opening.hide{
+
       opacity:0;
+
       visibility:hidden;
+
       pointer-events:none;
+
     }
+
 
     .opening-box{
+
       width:min(90%,650px);
+
       padding:55px 30px;
+
       text-align:center;
+
       border:1px solid rgba(255,255,255,.7);
+
       border-radius:35px;
+
       background:rgba(255,255,255,.27);
+
       backdrop-filter:blur(20px);
+
       box-shadow:
-        0 35px 90px rgba(73,20,39,.25),
-        inset 0 1px rgba(255,255,255,.8);
+
+        0 35px 90px
+        rgba(73,20,39,.25),
+
+        inset 0 1px
+        rgba(255,255,255,.8);
+
     }
+
 
     .opening-small{
+
       font-size:12px;
+
       letter-spacing:5px;
+
       color:#7e3048;
+
       margin-bottom:15px;
+
     }
+
 
     .opening h1{
+
       font-family:"Aref Ruqaa",serif;
-      font-size:clamp(40px,8vw,75px);
+
+      font-size:
+        clamp(40px,8vw,75px);
+
       color:#541d31;
+
       margin-bottom:10px;
+
     }
+
 
     .opening p{
+
       color:#7c4051;
+
       font-size:16px;
+
       margin-bottom:30px;
+
     }
+
 
     .opening-buttons{
+
       display:flex;
+
       justify-content:center;
+
       gap:12px;
+
       flex-wrap:wrap;
+
     }
+
 
     .opening-buttons button{
+
       border:0;
+
       padding:13px 28px;
+
       border-radius:999px;
+
       cursor:pointer;
+
       transition:.35s;
+
       font-weight:700;
+
     }
+
 
     .yes-btn{
+
       color:white;
-      background:linear-gradient(135deg,#b84d68,#e58da2);
-      box-shadow:0 12px 30px rgba(184,77,104,.25);
+
+      background:
+        linear-gradient(
+          135deg,
+          #b84d68,
+          #e58da2
+        );
+
+      box-shadow:
+        0 12px 30px
+        rgba(184,77,104,.25);
+
     }
+
 
     .maybe-btn{
+
       color:#6c3042;
-      background:rgba(255,255,255,.7);
+
+      background:
+        rgba(255,255,255,.7);
+
     }
+
 
     .opening-buttons button:hover{
-      transform:translateY(-5px) scale(1.03);
+
+      transform:
+        translateY(-5px)
+        scale(1.03);
+
     }
 
-    /* =========================
+
+    /* =========================================================
        NAV
-    ========================= */
+    ========================================================= */
 
     nav{
+
       position:fixed;
+
       top:18px;
+
       left:50%;
+
       transform:translateX(-50%);
+
       width:min(92%,1100px);
+
       z-index:100;
+
       padding:12px 20px;
+
       display:flex;
+
       align-items:center;
+
       justify-content:space-between;
-      border:1px solid rgba(255,255,255,.7);
+
+      border:
+        1px solid
+        rgba(255,255,255,.7);
+
       border-radius:999px;
-      background:rgba(255,248,247,.67);
+
+      background:
+        rgba(255,248,247,.67);
+
       backdrop-filter:blur(20px);
-      box-shadow:0 12px 35px rgba(80,20,40,.08);
+
+      box-shadow:
+        0 12px 35px
+        rgba(80,20,40,.08);
+
     }
+
 
     .logo{
+
       font-family:"Great Vibes",cursive;
+
       font-size:28px;
+
       color:#9e4059;
+
     }
+
 
     .nav-links{
+
       display:flex;
+
       gap:25px;
+
       font-size:13px;
+
     }
+
 
     .nav-links a{
+
       position:relative;
+
       color:#673145;
+
     }
+
 
     .nav-links a::after{
+
       content:"";
+
       position:absolute;
+
       bottom:-5px;
+
       right:0;
+
       width:0;
+
       height:1px;
+
       background:#b84d68;
+
       transition:.3s;
+
     }
+
 
     .nav-links a:hover::after{
+
       width:100%;
+
     }
 
-    /* =========================
+
+    /* =========================================================
        HERO
-    ========================= */
+    ========================================================= */
 
     .hero{
+
       min-height:100vh;
+
       display:flex;
+
       align-items:center;
+
       justify-content:center;
+
       position:relative;
-      padding:130px 20px 80px;
+
+      padding:
+        130px 20px
+        80px;
+
       overflow:hidden;
+
     }
+
 
     .hero::before,
     .hero::after{
+
       content:"";
+
       position:absolute;
+
       border-radius:50%;
+
       filter:blur(2px);
+
       pointer-events:none;
+
     }
+
 
     .hero::before{
+
       width:300px;
+
       height:300px;
+
       background:#ffdbe3;
+
       top:10%;
+
       right:-100px;
+
       opacity:.65;
+
     }
+
 
     .hero::after{
+
       width:350px;
+
       height:350px;
+
       background:#f8e4e9;
+
       bottom:-150px;
+
       left:-120px;
+
       opacity:.8;
+
     }
+
 
     .hero-content{
+
       position:relative;
+
       z-index:2;
+
       text-align:center;
+
       max-width:850px;
+
     }
+
 
     .hero-kicker{
+
       letter-spacing:6px;
+
       color:#a24b63;
+
       font-size:12px;
+
       margin-bottom:15px;
+
     }
+
 
     .hero h1{
+
       font-family:"Great Vibes",cursive;
-      font-size:clamp(80px,18vw,170px);
+
+      font-size:
+        clamp(80px,18vw,170px);
+
       line-height:.9;
+
       color:#541d31;
-      text-shadow:0 15px 30px rgba(90,30,50,.12);
+
+      text-shadow:
+        0 15px 30px
+        rgba(90,30,50,.12);
+
     }
+
 
     .hero h2{
+
       margin-top:20px;
+
       font-family:"Aref Ruqaa",serif;
-      font-size:clamp(28px,5vw,50px);
+
+      font-size:
+        clamp(28px,5vw,50px);
+
       color:#8d3c55;
+
     }
+
 
     .hero p{
+
       max-width:600px;
+
       margin:20px auto 0;
+
       line-height:2.2;
+
       color:#764052;
+
     }
+
 
     .scroll-down{
+
       margin-top:40px;
+
       display:inline-flex;
+
       padding:10px 20px;
+
       border-radius:999px;
-      background:rgba(255,255,255,.6);
+
+      background:
+        rgba(255,255,255,.6);
+
       color:#9e4059;
+
       font-size:12px;
-      animation:scrollPulse 2s infinite;
+
+      animation:
+        scrollPulse 2s infinite;
+
     }
+
 
     @keyframes scrollPulse{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(7px)}
+
+      0%,100%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(7px);
+      }
+
     }
 
-    /* =========================
+
+    /* =========================================================
        GENERAL
-    ========================= */
+    ========================================================= */
 
     section{
+
       padding:100px 20px;
+
     }
+
 
     .container{
+
       width:min(1100px,100%);
+
       margin:auto;
+
     }
+
 
     .section-title{
+
       text-align:center;
+
       margin-bottom:50px;
+
     }
+
 
     .section-title span{
+
       font-size:11px;
+
       letter-spacing:4px;
+
       color:#a74a62;
+
     }
+
 
     .section-title h2{
+
       font-family:"Aref Ruqaa",serif;
-      font-size:clamp(35px,6vw,55px);
+
+      font-size:
+        clamp(35px,6vw,55px);
+
       margin:10px 0;
+
       color:#541d31;
+
     }
+
 
     .section-title p{
+
       max-width:650px;
+
       margin:auto;
+
       line-height:2;
+
       color:#825061;
+
     }
 
-    /* =========================
+
+    /* =========================================================
        TEDDY GARDEN
-    ========================= */
+       ONLY TEDDIES CHANGED
+    ========================================================= */
 
     .garden-section{
+
       position:relative;
+
       overflow:hidden;
+
     }
+
 
     .garden-card{
+
       position:relative;
+
       padding:35px;
+
       border-radius:40px;
+
       background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 20%),
-        linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,230,237,.66));
-      border:1px solid rgba(255,255,255,.9);
-      box-shadow:0 30px 80px rgba(100,35,55,.12);
+
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(255,255,255,.8),
+          transparent 20%
+        ),
+
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.78),
+          rgba(255,230,237,.66)
+        );
+
+      border:
+        1px solid
+        rgba(255,255,255,.9);
+
+      box-shadow:
+        0 30px 80px
+        rgba(100,35,55,.12);
+
       overflow:hidden;
+
     }
+
 
     .garden-card::before{
+
       content:"";
+
       position:absolute;
+
       inset:15px;
-      border:1px dashed rgba(184,77,104,.17);
+
+      border:
+        1px dashed
+        rgba(184,77,104,.17);
+
       border-radius:30px;
+
       pointer-events:none;
+
     }
+
 
     .teddy-garden{
+
       min-height:480px;
+
       display:flex;
+
       justify-content:center;
+
       align-items:flex-end;
+
       gap:15px;
+
       flex-wrap:wrap;
+
       position:relative;
-      padding:40px 10px 60px;
+
+      padding:
+        40px 10px
+        60px;
+
     }
+
 
     .teddy{
+
       width:210px;
+
       height:300px;
+
       position:relative;
+
       cursor:pointer;
+
       display:flex;
+
       justify-content:center;
+
       align-items:flex-end;
+
       z-index:3;
+
       transition:
-        transform .45s cubic-bezier(.2,.8,.2,1),
+        transform .45s
+        cubic-bezier(.2,.8,.2,1),
+
         filter .45s ease;
+
       user-select:none;
+
     }
+
 
     .teddy img{
+
       width:100%;
+
       height:100%;
+
       object-fit:contain;
+
       display:block;
+
       transform-origin:center bottom;
-      filter:drop-shadow(0 20px 16px rgba(100,35,55,.14));
+
+      filter:
+        drop-shadow(
+          0 20px 16px
+          rgba(100,35,55,.14)
+        );
+
       transition:.45s;
+
       pointer-events:none;
+
     }
 
-    /* حركة الدباديب */
+
+    /* =========================================================
+       EXTERNAL TEDDY #1
+       RILAKKUMA / BALLOONS
+    ========================================================= */
 
     .teddy-1 img{
-      animation:breathe1 4s ease-in-out infinite;
+
+      animation:
+        breathe1 4s
+        ease-in-out
+        infinite;
+
     }
+
+
+    /* =========================================================
+       EXTERNAL TEDDY #2
+       WHITE KAWAII GIF
+    ========================================================= */
 
     .teddy-2 img{
-      animation:breathe2 4.6s ease-in-out infinite;
+
+      animation:
+        breathe2 4.6s
+        ease-in-out
+        infinite;
+
     }
+
+
+    /* =========================================================
+       EXTERNAL TEDDY #3
+       TENOR BEAR
+    ========================================================= */
 
     .teddy-3 img{
-      animation:breathe3 3.8s ease-in-out infinite;
+
+      animation:
+        breathe3 3.8s
+        ease-in-out
+        infinite;
+
     }
+
+
+    /* =========================================================
+       EXTERNAL TEDDY #4
+       KAWAII FLYING KISS GIF
+    ========================================================= */
 
     .teddy-4 img{
-      animation:breathe4 4.3s ease-in-out infinite;
+
+      animation:
+        breathe4 4.3s
+        ease-in-out
+        infinite;
+
     }
+
 
     @keyframes breathe1{
+
       0%,100%{
-        transform:translateY(0) rotate(-2deg);
+
+        transform:
+          translateY(0)
+          rotate(-2deg);
+
       }
+
       50%{
-        transform:translateY(-16px) rotate(3deg);
+
+        transform:
+          translateY(-16px)
+          rotate(3deg);
+
       }
+
     }
+
 
     @keyframes breathe2{
+
       0%,100%{
-        transform:translateY(-4px) rotate(2deg);
+
+        transform:
+          translateY(-4px)
+          rotate(2deg);
+
       }
+
       50%{
-        transform:translateY(-22px) rotate(-3deg);
+
+        transform:
+          translateY(-22px)
+          rotate(-3deg);
+
       }
+
     }
+
 
     @keyframes breathe3{
+
       0%,100%{
-        transform:translateY(0) rotate(1deg) scale(1);
+
+        transform:
+          translateY(0)
+          rotate(1deg)
+          scale(1);
+
       }
+
       50%{
-        transform:translateY(-14px) rotate(-2deg) scale(1.03);
+
+        transform:
+          translateY(-14px)
+          rotate(-2deg)
+          scale(1.03);
+
       }
+
     }
+
 
     @keyframes breathe4{
+
       0%,100%{
-        transform:translateY(-3px) rotate(-2deg);
+
+        transform:
+          translateY(-3px)
+          rotate(-2deg);
+
       }
+
       50%{
-        transform:translateY(-20px) rotate(2deg);
+
+        transform:
+          translateY(-20px)
+          rotate(2deg);
+
       }
+
     }
+
 
     .teddy:hover{
-      transform:translateY(-18px) scale(1.08);
+
+      transform:
+        translateY(-18px)
+        scale(1.08);
+
     }
+
 
     .teddy:hover img{
+
       filter:
-        drop-shadow(0 25px 22px rgba(184,77,104,.22))
+
+        drop-shadow(
+          0 25px 22px
+          rgba(184,77,104,.22)
+        )
+
         saturate(1.08);
+
     }
+
 
     .teddy.selected{
-      transform:translateY(-25px) scale(1.12);
+
+      transform:
+        translateY(-25px)
+        scale(1.12);
+
     }
+
 
     .teddy.selected img{
+
       filter:
-        drop-shadow(0 30px 30px rgba(184,77,104,.28))
+
+        drop-shadow(
+          0 30px 30px
+          rgba(184,77,104,.28)
+        )
+
         saturate(1.1);
+
     }
 
+
     .teddy-name{
+
       position:absolute;
+
       bottom:-8px;
-      background:rgba(255,255,255,.8);
-      border:1px solid rgba(255,255,255,.9);
+
+      background:
+        rgba(255,255,255,.8);
+
+      border:
+        1px solid
+        rgba(255,255,255,.9);
+
       padding:6px 14px;
+
       border-radius:999px;
+
       color:#7e344b;
+
       font-size:11px;
+
       backdrop-filter:blur(10px);
+
       opacity:0;
+
       transform:translateY(10px);
+
       transition:.35s;
+
       pointer-events:none;
+
     }
+
 
     .teddy:hover .teddy-name,
     .teddy.selected .teddy-name{
+
       opacity:1;
+
       transform:translateY(0);
+
     }
+
 
     .teddy::before,
     .teddy::after{
+
       content:"✦";
+
       position:absolute;
+
       color:#e18da0;
+
       font-size:22px;
+
       pointer-events:none;
+
       opacity:.65;
-      animation:twinkle 2.4s ease-in-out infinite;
+
+      animation:
+        twinkle 2.4s
+        ease-in-out
+        infinite;
+
     }
+
 
     .teddy::before{
+
       top:35px;
+
       right:5px;
+
     }
+
 
     .teddy::after{
+
       top:85px;
+
       left:0;
+
       animation-delay:1s;
+
     }
+
 
     @keyframes twinkle{
+
       0%,100%{
+
         opacity:.25;
-        transform:scale(.7) rotate(0);
+
+        transform:
+          scale(.7)
+          rotate(0);
+
       }
+
       50%{
+
         opacity:1;
-        transform:scale(1.3) rotate(25deg);
+
+        transform:
+          scale(1.3)
+          rotate(25deg);
+
       }
+
     }
+
 
     .teddy-ground{
+
       position:absolute;
+
       bottom:30px;
+
       left:8%;
+
       right:8%;
+
       height:55px;
+
       border-radius:50%;
-      background:radial-gradient(
-        ellipse,
-        rgba(184,77,104,.16),
-        transparent 70%
-      );
+
+      background:
+
+        radial-gradient(
+          ellipse,
+          rgba(184,77,104,.16),
+          transparent 70%
+        );
+
       filter:blur(7px);
+
     }
+
 
     .teddy-selection{
+
       position:relative;
+
       z-index:5;
+
       text-align:center;
+
       min-height:50px;
+
       padding:15px 20px;
+
       border-radius:20px;
-      background:rgba(255,255,255,.7);
+
+      background:
+        rgba(255,255,255,.7);
+
       color:#77374d;
-      border:1px solid rgba(255,255,255,.9);
+
+      border:
+        1px solid
+        rgba(255,255,255,.9);
+
       line-height:1.9;
+
     }
 
-    /* =========================
+
+    /* =========================================================
        LETTER
-    ========================= */
+    ========================================================= */
 
     .letter-section{
+
       background:
+
         linear-gradient(
           180deg,
           rgba(255,255,255,.1),
           rgba(255,222,230,.3)
         );
+
     }
+
 
     .letter-wrap{
+
       display:flex;
+
       justify-content:center;
+
     }
+
 
     .envelope{
+
       position:relative;
+
       width:min(650px,100%);
+
       min-height:470px;
+
       perspective:1000px;
+
     }
+
 
     .envelope-back{
+
       position:absolute;
+
       inset:0;
+
       border-radius:25px;
-      background:linear-gradient(145deg,#c76c80,#a84560);
-      box-shadow:0 30px 70px rgba(83,25,45,.2);
+
+      background:
+        linear-gradient(
+          145deg,
+          #c76c80,
+          #a84560
+        );
+
+      box-shadow:
+        0 30px 70px
+        rgba(83,25,45,.2);
+
     }
+
 
     .envelope-flap{
+
       position:absolute;
+
       z-index:5;
+
       top:0;
+
       left:0;
+
       width:100%;
+
       height:55%;
+
       background:#d98295;
-      clip-path:polygon(0 0,100% 0,50% 100%);
+
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          50% 100%
+        );
+
       transform-origin:top;
-      transition:1s cubic-bezier(.2,.7,.2,1);
+
+      transition:
+        1s
+        cubic-bezier(.2,.7,.2,1);
+
     }
 
-    .envelope.open .envelope-flap{
+
+    .envelope.open
+    .envelope-flap{
+
       transform:rotateX(180deg);
+
       z-index:1;
+
     }
+
 
     .letter-paper{
+
       position:absolute;
+
       z-index:3;
+
       left:6%;
+
       right:6%;
+
       bottom:5%;
+
       height:85%;
+
       padding:30px 28px;
+
       background:
+
         linear-gradient(
           rgba(255,255,255,.92),
           rgba(255,250,247,.96)
         );
+
       border-radius:18px;
-      box-shadow:0 10px 35px rgba(70,20,35,.15);
+
+      box-shadow:
+        0 10px 35px
+        rgba(70,20,35,.15);
+
       transform:translateY(38%);
-      transition:1.2s cubic-bezier(.2,.8,.2,1);
+
+      transition:
+        1.2s
+        cubic-bezier(.2,.8,.2,1);
+
       overflow:auto;
+
     }
 
-    .envelope.open .letter-paper{
+
+    .envelope.open
+    .letter-paper{
+
       transform:translateY(-10%);
+
     }
 
-    /* صورة جنى المطلوبة */
+
+    /* =========================================================
+       الصورة فوق رسالة جنى
+       فقط تم تغييرها إلى شكل أفقي
+    ========================================================= */
 
     .jana-photo{
-      width:125px;
-      height:125px;
+
+      width:100%;
+
+      max-width:520px;
+
+      height:230px;
+
       margin:0 auto 20px;
-      border-radius:50%;
+
+      border-radius:18px;
+
       overflow:hidden;
-      border:6px solid rgba(255,255,255,.9);
+
+      border:
+        6px solid
+        rgba(255,255,255,.9);
+
       box-shadow:
-        0 12px 35px rgba(130,45,70,.2),
-        0 0 0 2px rgba(184,77,104,.15);
+
+        0 12px 35px
+        rgba(130,45,70,.2),
+
+        0 0 0 2px
+        rgba(184,77,104,.15);
+
       background:#f5dce2;
+
     }
+
 
     .jana-photo img{
+
       width:100%;
+
       height:100%;
+
       object-fit:cover;
+
+      object-position:center;
+
       display:block;
+
     }
+
 
     .letter-title{
+
       text-align:center;
+
       font-family:"Aref Ruqaa",serif;
+
       font-size:30px;
+
       color:#8e3c54;
+
       margin-bottom:18px;
+
     }
+
 
     .letter-text{
+
       font-family:"Amiri",serif;
+
       font-size:20px;
+
       line-height:2.2;
+
       color:#633244;
+
       text-align:center;
+
       min-height:150px;
+
     }
+
 
     .open-letter{
+
       position:absolute;
+
       z-index:10;
+
       bottom:25px;
+
       left:50%;
+
       transform:translateX(-50%);
+
       border:0;
+
       background:#fff8f7;
+
       color:#87394f;
+
       border-radius:999px;
+
       padding:13px 25px;
+
       cursor:pointer;
-      box-shadow:0 10px 25px rgba(60,20,35,.18);
+
+      box-shadow:
+        0 10px 25px
+        rgba(60,20,35,.18);
+
       transition:.35s;
+
     }
+
 
     .open-letter:hover{
-      transform:translateX(-50%) translateY(-4px);
+
+      transform:
+        translateX(-50%)
+        translateY(-4px);
+
     }
 
-    /* =========================
+
+    /* =========================================================
        MEMORIES
-    ========================= */
+    ========================================================= */
 
     .memories{
+
       position:relative;
+
     }
+
 
     .memory-slider{
+
       width:min(800px,100%);
+
       margin:auto;
+
       position:relative;
+
       overflow:hidden;
+
       border-radius:30px;
-      box-shadow:0 25px 70px rgba(80,25,45,.18);
+
+      box-shadow:
+        0 25px 70px
+        rgba(80,25,45,.18);
+
     }
+
 
     .slides{
+
       display:flex;
-      transition:transform .7s cubic-bezier(.2,.8,.2,1);
+
+      transition:
+        transform .7s
+        cubic-bezier(.2,.8,.2,1);
+
       direction:ltr;
+
     }
+
+
+    /* =========================================================
+       الصور أفقية 16:9 فقط
+    ========================================================= */
 
     .slide{
+
       flex:0 0 100%;
-      height:520px;
+
+      aspect-ratio:16 / 9;
+
+      height:auto;
+
+      min-height:0;
+
       position:relative;
+
       background:#f5dce2;
+
+      overflow:hidden;
+
     }
+
 
     .slide img{
+
       width:100%;
+
       height:100%;
+
       object-fit:cover;
+
+      object-position:center;
+
       display:block;
+
     }
+
 
     .slide::after{
+
       content:"";
+
       position:absolute;
+
       inset:0;
-      background:linear-gradient(
-        to top,
-        rgba(35,10,20,.45),
-        transparent 45%
-      );
+
+      background:
+
+        linear-gradient(
+          to top,
+          rgba(35,10,20,.45),
+          transparent 45%
+        );
+
     }
+
 
     .slide-caption{
+
       position:absolute;
+
       z-index:2;
+
       bottom:25px;
+
       right:25px;
+
       left:25px;
+
       color:white;
+
       text-align:center;
+
       font-family:"Aref Ruqaa",serif;
+
       font-size:24px;
+
     }
+
 
     .slider-controls{
+
       display:flex;
+
       justify-content:center;
+
       gap:12px;
+
       margin-top:20px;
+
     }
+
 
     .slider-controls button{
+
       width:45px;
+
       height:45px;
+
       border-radius:50%;
-      border:1px solid #ecc0ca;
+
+      border:
+        1px solid
+        #ecc0ca;
+
       background:#fff;
+
       color:#8c3d55;
+
       cursor:pointer;
+
       transition:.3s;
+
     }
+
 
     .slider-controls button:hover{
+
       transform:translateY(-3px);
+
       background:#fce5eb;
+
     }
 
-    /* =========================
+
+    /* =========================================================
        MUSIC
-    ========================= */
+    ========================================================= */
 
     .music-section{
+
       padding-top:50px;
+
     }
+
 
     .music-card{
+
       width:min(600px,100%);
+
       margin:auto;
+
       padding:30px;
+
       text-align:center;
+
       border-radius:30px;
-      background:rgba(255,255,255,.65);
-      border:1px solid rgba(255,255,255,.9);
-      box-shadow:0 20px 50px rgba(80,25,45,.1);
+
+      background:
+        rgba(255,255,255,.65);
+
+      border:
+        1px solid
+        rgba(255,255,255,.9);
+
+      box-shadow:
+        0 20px 50px
+        rgba(80,25,45,.1);
+
       backdrop-filter:blur(15px);
+
     }
+
 
     .music-disc{
+
       width:100px;
+
       height:100px;
-      margin:auto auto 20px;
+
+      margin:
+        auto auto 20px;
+
       border-radius:50%;
+
       display:flex;
+
       align-items:center;
+
       justify-content:center;
+
       background:
-        radial-gradient(circle,#fff 0 8%,transparent 9%),
-        linear-gradient(135deg,#d67d92,#f7c5d0);
-      box-shadow:0 12px 30px rgba(130,45,70,.2);
+
+        radial-gradient(
+          circle,
+          #fff 0 8%,
+          transparent 9%
+        ),
+
+        linear-gradient(
+          135deg,
+          #d67d92,
+          #f7c5d0
+        );
+
+      box-shadow:
+        0 12px 30px
+        rgba(130,45,70,.2);
+
       font-size:30px;
+
     }
+
 
     .music-disc.playing{
-      animation:spin 5s linear infinite;
+
+      animation:
+        spin 5s
+        linear
+        infinite;
+
     }
+
 
     @keyframes spin{
-      to{transform:rotate(360deg)}
+
+      to{
+        transform:rotate(360deg);
+      }
+
     }
+
 
     .music-card h3{
+
       font-family:"Aref Ruqaa",serif;
+
       font-size:28px;
+
       color:#743249;
+
     }
+
 
     .music-card p{
+
       color:#966073;
+
       margin:5px 0 20px;
+
     }
+
 
     .music-card button{
+
       border:0;
+
       border-radius:999px;
+
       padding:12px 25px;
+
       color:#fff;
-      background:linear-gradient(135deg,#a8445e,#db8297);
+
+      background:
+
+        linear-gradient(
+          135deg,
+          #a8445e,
+          #db8297
+        );
+
       cursor:pointer;
-      box-shadow:0 10px 25px rgba(168,68,94,.2);
+
+      box-shadow:
+        0 10px 25px
+        rgba(168,68,94,.2);
+
     }
 
-    /* =========================
+
+    /* =========================================================
        FINAL
-    ========================= */
+    ========================================================= */
 
     .final-section{
+
       min-height:70vh;
+
       display:flex;
+
       align-items:center;
+
       text-align:center;
+
     }
 
+
     .final-box{
+
       width:min(800px,100%);
+
       margin:auto;
+
       padding:70px 25px;
+
       border-radius:40px;
+
       background:
+
         radial-gradient(
           circle at center,
           rgba(255,255,255,.8),
           rgba(255,229,235,.55)
         );
-      border:1px solid rgba(255,255,255,.9);
-      box-shadow:0 30px 80px rgba(80,25,45,.1);
+
+      border:
+        1px solid
+        rgba(255,255,255,.9);
+
+      box-shadow:
+        0 30px 80px
+        rgba(80,25,45,.1);
+
     }
+
 
     .final-box .small{
+
       letter-spacing:4px;
+
       font-size:11px;
+
       color:#a14a62;
+
     }
+
 
     .final-box h2{
+
       font-family:"Great Vibes",cursive;
-      font-size:clamp(55px,10vw,95px);
+
+      font-size:
+        clamp(55px,10vw,95px);
+
       color:#541d31;
+
       margin:15px 0;
+
     }
+
 
     .final-box p{
+
       font-family:"Amiri",serif;
+
       font-size:23px;
+
       line-height:2;
+
       color:#71364b;
+
     }
+
 
     footer{
+
       text-align:center;
-      padding:30px 20px 50px;
+
+      padding:
+        30px 20px
+        50px;
+
       color:#9a6171;
+
       font-size:11px;
+
     }
 
-    /* =========================
+
+    /* =========================================================
        FLOATING HEARTS
-    ========================= */
+    ========================================================= */
 
     .heart{
+
       position:fixed;
+
       z-index:999;
+
       pointer-events:none;
+
       color:#d97d94;
-      animation:heartFly 2.5s ease-out forwards;
+
+      animation:
+        heartFly 2.5s
+        ease-out
+        forwards;
+
       font-size:18px;
+
     }
 
+
     @keyframes heartFly{
+
       0%{
+
         opacity:1;
-        transform:translate(0,0) scale(.7) rotate(0);
-      }
-      100%{
-        opacity:0;
+
         transform:
+          translate(0,0)
+          scale(.7)
+          rotate(0);
+
+      }
+
+      100%{
+
+        opacity:0;
+
+        transform:
+
           translate(
             calc(var(--x) * 1px),
             calc(var(--y) * 1px)
           )
+
           scale(1.4)
+
           rotate(25deg);
+
       }
+
     }
+
 
     .burst{
+
       position:absolute;
+
       pointer-events:none;
+
       z-index:20;
-      animation:burst .9s ease-out forwards;
+
+      animation:
+        burst .9s
+        ease-out
+        forwards;
+
     }
 
+
     @keyframes burst{
+
       0%{
+
         opacity:1;
-        transform:translate(0,0) scale(.5);
-      }
-      100%{
-        opacity:0;
+
         transform:
+          translate(0,0)
+          scale(.5);
+
+      }
+
+      100%{
+
+        opacity:0;
+
+        transform:
+
           translate(
             calc(var(--bx) * 1px),
             calc(var(--by) * 1px)
           )
+
           scale(1.5);
+
       }
+
     }
 
-    /* =========================
+
+    /* =========================================================
        REVEAL
-    ========================= */
+    ========================================================= */
 
     .reveal{
+
       opacity:0;
+
       transform:translateY(35px);
+
       transition:1s ease;
+
     }
+
 
     .reveal.show{
+
       opacity:1;
+
       transform:translateY(0);
+
     }
 
-    /* =========================
+
+    /* =========================================================
        RESPONSIVE
-    ========================= */
+    ========================================================= */
 
     @media(max-width:800px){
 
       nav{
+
         top:10px;
+
         padding:10px 15px;
+
       }
+
 
       .nav-links{
+
         gap:12px;
+
         font-size:10px;
+
       }
+
 
       .logo{
+
         font-size:23px;
+
       }
+
 
       section{
+
         padding:75px 15px;
+
       }
+
 
       .garden-card{
+
         padding:20px 10px;
+
       }
+
 
       .teddy-garden{
+
         min-height:700px;
+
         gap:0;
+
       }
+
 
       .teddy{
+
         width:160px;
+
         height:235px;
+
         margin:-5px;
+
       }
+
 
       .letter-paper{
+
         padding:25px 18px;
+
       }
+
 
       .letter-text{
+
         font-size:18px;
+
       }
 
-      .slide{
-        height:420px;
+
+      /* الصورة تظل أفقية */
+
+      .jana-photo{
+
+        height:190px;
+
       }
+
+
+      /* الذكريات تظل 16:9 */
+
+      .slide{
+
+        aspect-ratio:16 / 9;
+
+      }
+
     }
+
 
     @media(max-width:520px){
 
       .nav-links a:nth-child(3){
+
         display:none;
+
       }
+
 
       .hero h1{
+
         font-size:90px;
+
       }
+
 
       .hero h2{
+
         font-size:30px;
+
       }
+
 
       .hero p{
+
         font-size:13px;
+
       }
+
 
       .teddy-garden{
+
         display:grid;
+
         grid-template-columns:1fr 1fr;
+
         align-items:end;
+
         justify-items:center;
+
         min-height:580px;
+
       }
+
 
       .teddy{
+
         width:150px;
+
         height:220px;
+
       }
+
 
       .teddy-name{
+
         font-size:9px;
+
         padding:5px 9px;
+
       }
+
+
+      /* صورة رسالة جنى */
 
       .jana-photo{
-        width:105px;
-        height:105px;
+
+        width:100%;
+
+        height:155px;
+
+        border-radius:15px;
+
       }
+
 
       .letter-title{
+
         font-size:26px;
+
       }
+
 
       .letter-text{
+
         font-size:17px;
+
       }
+
+
+      /* الصور أفقية */
 
       .slide{
-        height:350px;
+
+        aspect-ratio:16 / 9;
+
       }
+
+
+      .slide-caption{
+
+        font-size:18px;
+
+        bottom:15px;
+
+      }
+
 
       .final-box{
+
         padding:50px 18px;
+
       }
 
+
       .final-box p{
+
         font-size:19px;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- =========================
-       OPENING
-  ========================= -->
 
-  <div class="opening" id="opening">
+  <!-- =========================================================
+       OPENING
+  ========================================================= -->
+
+  <div
+    class="opening"
+    id="opening"
+  >
 
     <div class="opening-box">
 
@@ -1091,7 +2236,9 @@
         A LITTLE SECRET FOR JANA
       </div>
 
-      <h1>جنى... بتحبيني؟ ♡</h1>
+      <h1>
+        جنى... بتحبيني؟ ♡
+      </h1>
 
       <p>
         قبل ما ندخل الحكاية دي...
@@ -1099,13 +2246,21 @@
       </p>
 
       <div class="opening-buttons">
-        <button class="yes-btn" id="yesBtn">
+
+        <button
+          class="yes-btn"
+          id="yesBtn"
+        >
           أكيد ♥
         </button>
 
-        <button class="maybe-btn" id="maybeBtn">
+        <button
+          class="maybe-btn"
+          id="maybeBtn"
+        >
           هفكر 🙃
         </button>
+
       </div>
 
     </div>
@@ -1113,9 +2268,9 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =========================================================
        NAV
-  ========================= -->
+  ========================================================= -->
 
   <nav>
 
@@ -1124,21 +2279,42 @@
     </div>
 
     <div class="nav-links">
-      <a href="#home">البداية</a>
-      <a href="#teddies">الدباديب</a>
-      <a href="#letter">الرسالة</a>
-      <a href="#memories">الذكريات</a>
-      <a href="#music">الأغنية</a>
+
+      <a href="#home">
+        البداية
+      </a>
+
+      <a href="#teddies">
+        الدباديب
+      </a>
+
+      <a href="#letter">
+        الرسالة
+      </a>
+
+      <a href="#memories">
+        الذكريات
+      </a>
+
+      <a href="#music">
+        الأغنية
+      </a>
+
     </div>
 
   </nav>
 
 
-  <!-- =========================
-       HERO
-  ========================= -->
+  <!-- =========================================================
+       MAIN
+  ========================================================= -->
 
   <main id="home">
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================= -->
 
     <section class="hero">
 
@@ -1148,7 +2324,9 @@
           A LITTLE WORLD MADE FOR
         </div>
 
-        <h1>جنى</h1>
+        <h1>
+          جنى
+        </h1>
 
         <h2>
           My favorite person ♡
@@ -1161,7 +2339,10 @@
           بحاجة حلوة.
         </p>
 
-        <a href="#teddies" class="scroll-down">
+        <a
+          href="#teddies"
+          class="scroll-down"
+        >
           انزلي وشوفي المفاجأة ↓
         </a>
 
@@ -1170,11 +2351,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          TEDDIES
-    ========================= -->
+    ======================================================= -->
 
-    <section class="garden-section" id="teddies">
+    <section
+      class="garden-section"
+      id="teddies"
+    >
 
       <div class="container reveal">
 
@@ -1189,8 +2373,8 @@
           </h2>
 
           <p>
-            اخترتلك دباديب شكلها Kawaii وناعمة،
-            وكل واحد فيهم ليه حركة ورسالة صغيرة.
+            كل دبدوب هنا مخبي حاجة صغيرة مخصوص لجنى...
+            دوسي على أي واحد وشوفي رسالته.
           </p>
 
         </div>
@@ -1201,7 +2385,10 @@
           <div class="teddy-garden">
 
 
-            <!-- Teddy 1 -->
+            <!-- =================================================
+                 TEDDY 1
+                 EXTERNAL
+            ================================================== -->
 
             <div
               class="teddy teddy-1"
@@ -1220,35 +2407,19 @@
             </div>
 
 
-            <!-- Teddy 2 -->
+            <!-- =================================================
+                 TEDDY 2
+                 EXTERNAL GIF
+            ================================================== -->
 
             <div
               class="teddy teddy-2"
-              data-message="الدبدوب البني بيقولك: مكانك في الحكاية دي مميز أوي يا جنى ♡"
+              data-message="الدبدوب الأبيض بيقولك: مكانك عندي دايمًا مميز يا جنى 🤍"
             >
 
               <img
-                src="https://cdn.imgbin.com/11/18/4/cute-teddy-bear-cute-teddy-bear-plush-with-pink-bow-4d2YnvL6.jpg"
-                alt="دبدوب بني كيوت"
-              >
-
-              <div class="teddy-name">
-                الدبدوب البني
-              </div>
-
-            </div>
-
-
-            <!-- Teddy 3 -->
-
-            <div
-              class="teddy teddy-3"
-              data-message="الدبدوب الأبيض بيقولك: أتمنى كل أيامك تكون هادية ولطيفة زي قلبك 🤍"
-            >
-
-              <img
-                src="https://cdn.imgbin.com/19/16/23/teddy-bear-with-a-bow-white-teddy-bear-with-pink-bow-Paac4RUn.jpg"
-                alt="دبدوب أبيض كيوت"
+                src="https://www.descargarstickers.com/src_img/2021/10/053261.gif"
+                alt="دبدوب أبيض كيوت متحرك"
               >
 
               <div class="teddy-name">
@@ -1258,20 +2429,45 @@
             </div>
 
 
-            <!-- Animated GIF -->
+            <!-- =================================================
+                 TEDDY 3
+                 EXTERNAL TENOR
+            ================================================== -->
 
             <div
-              class="teddy teddy-4"
-              data-message="الدبدوب المتحرك بيقولك: جنى، دي أحلى مفاجأة صغيرة مخصوص ليكي 🧸♡"
+              class="teddy teddy-3"
+              data-message="الدبدوب ده بيقولك: وجودك لوحده بيخلي الحكاية أهدى وأجمل 🤍"
             >
 
               <img
-                src="https://cdn.pixabay.com/animation/2025/03/26/01/23/01-23-18-_512.gif"
-                alt="دبدوب متحرك كيوت"
+                src="https://media.tenor.com/rGKLFcORI8AAAAAe/hugs-and-kisses-bear.png"
+                alt="دباديب كيوت"
               >
 
               <div class="teddy-name">
-                الدبدوب المتحرك
+                دبدوب الحضن
+              </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TEDDY 4
+                 EXTERNAL GIF
+            ================================================== -->
+
+            <div
+              class="teddy teddy-4"
+              data-message="الدبدوب الأخير بيقولك: إنتِ من أجمل التفاصيل اللي دخلت الحكاية دي ♡"
+            >
+
+              <img
+                src="https://i.pinimg.com/originals/5d/05/87/5d05873082dce0ed9c4f074b83446c80.gif"
+                alt="دبدوب كيوت متحرك"
+              >
+
+              <div class="teddy-name">
+                دبدوب البوسة
               </div>
 
             </div>
@@ -1282,7 +2478,10 @@
           </div>
 
 
-          <div class="teddy-selection" id="teddySelection">
+          <div
+            class="teddy-selection"
+            id="teddySelection"
+          >
             اختاري دبدوب يا جنى 🧸
           </div>
 
@@ -1293,11 +2492,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          LETTER
-    ========================= -->
+    ======================================================= -->
 
-    <section class="letter-section" id="letter">
+    <section
+      class="letter-section"
+      id="letter"
+    >
 
       <div class="container reveal">
 
@@ -1321,7 +2523,10 @@
 
         <div class="letter-wrap">
 
-          <div class="envelope" id="envelope">
+          <div
+            class="envelope"
+            id="envelope"
+          >
 
             <div class="envelope-back"></div>
 
@@ -1330,7 +2535,11 @@
 
             <div class="letter-paper">
 
-              <!-- هنا اتغيرت الصورة إلى photo2.jpg -->
+
+              <!-- =================================================
+                   PHOTO2
+                   الصورة المطلوبة
+              ================================================== -->
 
               <div class="jana-photo">
 
@@ -1347,12 +2556,18 @@
               </div>
 
 
-              <div class="letter-text" id="letterText"></div>
+              <div
+                class="letter-text"
+                id="letterText"
+              ></div>
 
             </div>
 
 
-            <button class="open-letter" id="openLetter">
+            <button
+              class="open-letter"
+              id="openLetter"
+            >
               افتحي الرسالة ♡
             </button>
 
@@ -1365,11 +2580,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          MEMORIES
-    ========================= -->
+    ======================================================= -->
 
-    <section class="memories" id="memories">
+    <section
+      class="memories"
+      id="memories"
+    >
 
       <div class="container reveal">
 
@@ -1393,35 +2611,67 @@
 
         <div class="memory-slider">
 
-          <div class="slides" id="slides">
+          <div
+            class="slides"
+            id="slides"
+          >
+
 
             <div class="slide">
-              <img src="assets/photo1.jpg" alt="ذكرى 1">
+
+              <img
+                src="assets/photo1.jpg"
+                alt="ذكرى 1"
+              >
+
               <div class="slide-caption">
                 أول تفصيلة ♡
               </div>
+
             </div>
 
+
             <div class="slide">
-              <img src="assets/photo2.jpg" alt="ذكرى 2">
+
+              <img
+                src="assets/photo2.jpg"
+                alt="ذكرى 2"
+              >
+
               <div class="slide-caption">
                 لحظة مميزة لجنى
               </div>
+
             </div>
 
+
             <div class="slide">
-              <img src="assets/photo3.jpg" alt="ذكرى 3">
+
+              <img
+                src="assets/photo3.jpg"
+                alt="ذكرى 3"
+              >
+
               <div class="slide-caption">
                 تفاصيل صغيرة... بس غالية
               </div>
+
             </div>
 
+
             <div class="slide">
-              <img src="assets/photo4.jpg" alt="ذكرى 4">
+
+              <img
+                src="assets/photo4.jpg"
+                alt="ذكرى 4"
+              >
+
               <div class="slide-caption">
                 ولسه في ذكريات كتير ♡
               </div>
+
             </div>
+
 
           </div>
 
@@ -1445,11 +2695,14 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          MUSIC
-    ========================= -->
+    ======================================================= -->
 
-    <section class="music-section" id="music">
+    <section
+      class="music-section"
+      id="music"
+    >
 
       <div class="container reveal">
 
@@ -1468,7 +2721,10 @@
 
         <div class="music-card">
 
-          <div class="music-disc" id="musicDisc">
+          <div
+            class="music-disc"
+            id="musicDisc"
+          >
             ♫
           </div>
 
@@ -1480,11 +2736,13 @@
             شغليها وإنتِ بتكملي الجولة ♡
           </p>
 
+
           <audio
             id="song"
             src="assets/song.mp3"
             preload="metadata"
           ></audio>
+
 
           <button id="musicBtn">
             تشغيل الأغنية ♫
@@ -1497,9 +2755,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          FINAL
-    ========================= -->
+    ======================================================= -->
 
     <section class="final-section">
 
@@ -1516,16 +2774,21 @@
           </h2>
 
           <p>
+
             ولو اختصرت كل اللي جوايا في سطر واحد...
+
             <br><br>
 
             إنتِ مش مجرد ذكرى حلوة...
+
             <br>
 
             إنتِ من أجمل التفاصيل اللي نفسي تفضل
+
             <br>
 
             في الحكاية. 🤍
+
           </p>
 
         </div>
@@ -1534,91 +2797,158 @@
 
     </section>
 
+
   </main>
 
 
   <footer>
+
     Made with ♡ especially for JANA
+
   </footer>
 
 
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
   <script>
 
-    /* =========================
+
+    /* =========================================================
        OPENING
-    ========================= */
+    ========================================================= */
 
-    const opening = document.getElementById("opening");
-    const yesBtn = document.getElementById("yesBtn");
-    const maybeBtn = document.getElementById("maybeBtn");
+    const opening =
+      document.getElementById("opening");
 
-    yesBtn.addEventListener("click", () => {
+    const yesBtn =
+      document.getElementById("yesBtn");
 
-      opening.classList.add("hide");
-
-      setTimeout(() => {
-        createHearts(18);
-      }, 500);
-
-    });
+    const maybeBtn =
+      document.getElementById("maybeBtn");
 
 
-    maybeBtn.addEventListener("click", () => {
+    yesBtn.addEventListener(
+      "click",
+      () => {
 
-      maybeBtn.textContent = "مش هتخلصي مني 🙃";
+        opening.classList.add("hide");
 
-      maybeBtn.style.transform =
-        "translate(" +
-        (Math.random() * 80 - 40) +
-        "px," +
-        (Math.random() * 40 - 20) +
-        "px)";
+        setTimeout(
+          () => {
+            createHearts(18);
+          },
+          500
+        );
 
-    });
+      }
+    );
 
 
-    /* =========================
+    maybeBtn.addEventListener(
+      "click",
+      () => {
+
+        maybeBtn.textContent =
+          "مش هتخلصي مني 🙃";
+
+        maybeBtn.style.transform =
+          "translate(" +
+          (
+            Math.random() * 80 - 40
+          ) +
+          "px," +
+          (
+            Math.random() * 40 - 20
+          ) +
+          "px)";
+
+      }
+    );
+
+
+    /* =========================================================
        FLOATING HEARTS
-    ========================= */
+    ========================================================= */
 
     function createHeart(){
 
-      const heart = document.createElement("div");
+      const heart =
+        document.createElement("div");
 
-      heart.className = "heart";
+      heart.className =
+        "heart";
 
       heart.textContent =
-        ["♡","♥","✦","❤","⋆"][Math.floor(Math.random()*5)];
+        [
+          "♡",
+          "♥",
+          "✦",
+          "❤",
+          "⋆"
+        ][
+          Math.floor(
+            Math.random() * 5
+          )
+        ];
+
 
       heart.style.left =
-        Math.random() * window.innerWidth + "px";
+        Math.random() *
+        window.innerWidth +
+        "px";
+
 
       heart.style.top =
-        window.innerHeight + 20 + "px";
+        window.innerHeight +
+        20 +
+        "px";
+
 
       heart.style.setProperty(
         "--x",
         Math.random() * 180 - 90
       );
 
+
       heart.style.setProperty(
         "--y",
-        -(Math.random() * 300 + 250)
+        -(
+          Math.random() * 300 +
+          250
+        )
       );
 
+
       heart.style.fontSize =
-        Math.random() * 12 + 12 + "px";
+        Math.random() * 12 +
+        12 +
+        "px";
 
-      document.body.appendChild(heart);
 
-      setTimeout(() => heart.remove(),2700);
+      document.body.appendChild(
+        heart
+      );
+
+
+      setTimeout(
+        () => heart.remove(),
+        2700
+      );
 
     }
 
 
-    function createHearts(amount=10){
+    function createHearts(
+      amount=10
+    ){
 
-      for(let i=0;i<amount;i++){
+      for(
+        let i=0;
+        i<amount;
+        i++
+      ){
 
         setTimeout(
           createHeart,
@@ -1630,89 +2960,158 @@
     }
 
 
-    setInterval(() => {
+    setInterval(
+      () => {
 
-      if(Math.random() > .45){
-        createHeart();
-      }
+        if(
+          Math.random() > .45
+        ){
 
-    },1700);
+          createHeart();
+
+        }
+
+      },
+      1700
+    );
 
 
-    /* =========================
+    /* =========================================================
        TEDDY CLICK
-    ========================= */
+    ========================================================= */
 
     const teddies =
-      document.querySelectorAll(".teddy");
+      document.querySelectorAll(
+        ".teddy"
+      );
+
 
     const teddySelection =
-      document.getElementById("teddySelection");
+      document.getElementById(
+        "teddySelection"
+      );
 
 
-    teddies.forEach(teddy => {
+    teddies.forEach(
+      teddy => {
 
-      teddy.addEventListener("click", function(){
+        teddy.addEventListener(
+          "click",
+          function(){
 
-        teddies.forEach(item => {
-          item.classList.remove("selected");
-        });
+            teddies.forEach(
+              item => {
 
-        this.classList.add("selected");
+                item.classList.remove(
+                  "selected"
+                );
 
-        teddySelection.textContent =
-          this.dataset.message;
-
-        createTeddyBurst(this);
-
-      });
-
-    });
+              }
+            );
 
 
-    function createTeddyBurst(element){
+            this.classList.add(
+              "selected"
+            );
+
+
+            teddySelection.textContent =
+              this.dataset.message;
+
+
+            createTeddyBurst(this);
+
+          }
+        );
+
+      }
+    );
+
+
+    function createTeddyBurst(
+      element
+    ){
 
       const rect =
         element.getBoundingClientRect();
 
-      const symbols =
-        ["♥","♡","✦","✧","❤"];
 
-      for(let i=0;i<12;i++){
+      const symbols =
+        [
+          "♥",
+          "♡",
+          "✦",
+          "✧",
+          "❤"
+        ];
+
+
+      for(
+        let i=0;
+        i<12;
+        i++
+      ){
 
         const burst =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        burst.className = "burst";
+
+        burst.className =
+          "burst";
+
 
         burst.textContent =
-          symbols[Math.floor(Math.random()*symbols.length)];
+          symbols[
+            Math.floor(
+              Math.random() *
+              symbols.length
+            )
+          ];
+
 
         burst.style.left =
           rect.left +
           rect.width / 2 +
           "px";
 
+
         burst.style.top =
           rect.top +
           rect.height / 2 +
           "px";
 
+
         burst.style.color =
-          ["#d97d94","#e9a0b0","#b84d68","#f0b7c4"]
-          [Math.floor(Math.random()*4)];
+          [
+            "#d97d94",
+            "#e9a0b0",
+            "#b84d68",
+            "#f0b7c4"
+          ][
+            Math.floor(
+              Math.random() * 4
+            )
+          ];
+
 
         burst.style.setProperty(
           "--bx",
-          Math.random()*180-90
+          Math.random() * 180 - 90
         );
+
 
         burst.style.setProperty(
           "--by",
-          Math.random()*-180-20
+          Math.random() * -180 - 20
         );
 
-        document.body.appendChild(burst);
+
+        document.body.appendChild(
+          burst
+        );
+
 
         setTimeout(
           () => burst.remove(),
@@ -1724,22 +3123,29 @@
     }
 
 
-    /* =========================
+    /* =========================================================
        LETTER
-    ========================= */
+    ========================================================= */
 
     const envelope =
-      document.getElementById("envelope");
+      document.getElementById(
+        "envelope"
+      );
+
 
     const openLetter =
-      document.getElementById("openLetter");
+      document.getElementById(
+        "openLetter"
+      );
+
 
     const letterText =
-      document.getElementById("letterText");
+      document.getElementById(
+        "letterText"
+      );
 
 
-    const message = `
-في كلام كتير نفسي أقولهولك...
+    const message = `في كلام كتير نفسي أقولهولك...
 
 بس ساعات الكلام مهما كان كتير،
 بيفضل مش قادر يوصف كل اللي جوايا.
@@ -1766,76 +3172,113 @@
 إنتِ مش مجرد ذكرى حلوة...
 
 إنتِ من أجمل التفاصيل
-اللي نفسي تفضل في الحكاية. 🤍
-    `.trim();
+اللي نفسي تفضل في الحكاية. 🤍`;
 
 
     let typed = false;
 
 
-    openLetter.addEventListener("click", () => {
+    openLetter.addEventListener(
+      "click",
+      () => {
 
-      if(!envelope.classList.contains("open")){
+        if(
+          !envelope.classList.contains(
+            "open"
+          )
+        ){
 
-        envelope.classList.add("open");
+          envelope.classList.add(
+            "open"
+          );
 
-        openLetter.textContent =
-          "اقفلي الرسالة ♡";
 
-        if(!typed){
+          openLetter.textContent =
+            "اقفلي الرسالة ♡";
 
-          typed = true;
 
-          letterText.textContent = "";
+          if(!typed){
 
-          let index = 0;
+            typed = true;
 
-          function typeText(){
+            letterText.textContent =
+              "";
 
-            if(index < message.length){
+            let index = 0;
 
-              letterText.textContent +=
-                message[index];
 
-              index++;
+            function typeText(){
 
-              setTimeout(typeText,22);
+              if(
+                index <
+                message.length
+              ){
+
+                letterText.textContent +=
+                  message[index];
+
+                index++;
+
+                setTimeout(
+                  typeText,
+                  22
+                );
+
+              }
 
             }
 
+
+            setTimeout(
+              typeText,
+              700
+            );
+
           }
 
-          setTimeout(typeText,700);
+        }else{
+
+          envelope.classList.remove(
+            "open"
+          );
+
+
+          openLetter.textContent =
+            "افتحي الرسالة ♡";
 
         }
 
-      }else{
-
-        envelope.classList.remove("open");
-
-        openLetter.textContent =
-          "افتحي الرسالة ♡";
-
       }
+    );
 
-    });
 
-
-    /* =========================
+    /* =========================================================
        SLIDER
-    ========================= */
+    ========================================================= */
 
     const slides =
-      document.getElementById("slides");
+      document.getElementById(
+        "slides"
+      );
+
 
     const slideItems =
-      document.querySelectorAll(".slide");
+      document.querySelectorAll(
+        ".slide"
+      );
+
 
     const next =
-      document.getElementById("next");
+      document.getElementById(
+        "next"
+      );
+
 
     const prev =
-      document.getElementById("prev");
+      document.getElementById(
+        "prev"
+      );
+
 
     let current = 0;
 
@@ -1843,49 +3286,75 @@
     function updateSlider(){
 
       slides.style.transform =
-        `translateX(-${current * 100}%)`;
+        `translateX(-${
+          current * 100
+        }%)`;
 
     }
 
 
-    next.addEventListener("click", () => {
+    next.addEventListener(
+      "click",
+      () => {
 
-      current++;
+        current++;
 
-      if(current >= slideItems.length){
-        current = 0;
+
+        if(
+          current >=
+          slideItems.length
+        ){
+
+          current = 0;
+
+        }
+
+
+        updateSlider();
+
       }
-
-      updateSlider();
-
-    });
+    );
 
 
-    prev.addEventListener("click", () => {
+    prev.addEventListener(
+      "click",
+      () => {
 
-      current--;
+        current--;
 
-      if(current < 0){
-        current = slideItems.length - 1;
+
+        if(current < 0){
+
+          current =
+            slideItems.length - 1;
+
+        }
+
+
+        updateSlider();
+
       }
-
-      updateSlider();
-
-    });
+    );
 
 
-    /* =========================
+    /* =========================================================
        TOUCH SWIPE
-    ========================= */
+    ========================================================= */
 
     let startX = 0;
+
 
     slides.addEventListener(
       "touchstart",
       e => {
-        startX = e.touches[0].clientX;
+
+        startX =
+          e.touches[0].clientX;
+
       },
-      {passive:true}
+      {
+        passive:true
+      }
     );
 
 
@@ -1894,105 +3363,156 @@
       e => {
 
         const endX =
-          e.changedTouches[0].clientX;
+          e.changedTouches[0]
+          .clientX;
+
 
         const difference =
           startX - endX;
 
-        if(Math.abs(difference) > 50){
 
-          if(difference > 0){
+        if(
+          Math.abs(difference) >
+          50
+        ){
+
+          if(
+            difference > 0
+          ){
+
             next.click();
+
           }else{
+
             prev.click();
+
           }
 
         }
 
       },
-      {passive:true}
+      {
+        passive:true
+      }
     );
 
 
-    /* =========================
+    /* =========================================================
        MUSIC
-    ========================= */
+    ========================================================= */
 
     const song =
-      document.getElementById("song");
+      document.getElementById(
+        "song"
+      );
+
 
     const musicBtn =
-      document.getElementById("musicBtn");
+      document.getElementById(
+        "musicBtn"
+      );
+
 
     const musicDisc =
-      document.getElementById("musicDisc");
+      document.getElementById(
+        "musicDisc"
+      );
 
 
-    musicBtn.addEventListener("click", () => {
+    musicBtn.addEventListener(
+      "click",
+      () => {
 
-      if(song.paused){
+        if(
+          song.paused
+        ){
 
-        song.play()
-          .then(() => {
+          song.play()
+            .then(
+              () => {
 
-            musicBtn.textContent =
-              "إيقاف الأغنية ❚❚";
+                musicBtn.textContent =
+                  "إيقاف الأغنية ❚❚";
 
-            musicDisc.classList.add("playing");
+                musicDisc.classList.add(
+                  "playing"
+                );
 
-          })
-          .catch(() => {
+              }
+            )
+            .catch(
+              () => {
 
-            musicBtn.textContent =
-              "اضغطي مرة تانية للتشغيل ♫";
+                musicBtn.textContent =
+                  "اضغطي مرة تانية للتشغيل ♫";
 
-          });
+              }
+            );
 
-      }else{
+        }else{
 
-        song.pause();
+          song.pause();
+
+
+          musicBtn.textContent =
+            "تشغيل الأغنية ♫";
+
+
+          musicDisc.classList.remove(
+            "playing"
+          );
+
+        }
+
+      }
+    );
+
+
+    song.addEventListener(
+      "ended",
+      () => {
 
         musicBtn.textContent =
           "تشغيل الأغنية ♫";
 
-        musicDisc.classList.remove("playing");
+
+        musicDisc.classList.remove(
+          "playing"
+        );
 
       }
-
-    });
-
-
-    song.addEventListener("ended", () => {
-
-      musicBtn.textContent =
-        "تشغيل الأغنية ♫";
-
-      musicDisc.classList.remove("playing");
-
-    });
+    );
 
 
-    /* =========================
+    /* =========================================================
        REVEAL ON SCROLL
-    ========================= */
+    ========================================================= */
 
     const reveals =
-      document.querySelectorAll(".reveal");
+      document.querySelectorAll(
+        ".reveal"
+      );
 
 
     const revealObserver =
       new IntersectionObserver(
         entries => {
 
-          entries.forEach(entry => {
+          entries.forEach(
+            entry => {
 
-            if(entry.isIntersecting){
+              if(
+                entry.isIntersecting
+              ){
 
-              entry.target.classList.add("show");
+                entry.target.classList.add(
+                  "show"
+                );
+
+              }
 
             }
-
-          });
+          );
 
         },
         {
@@ -2001,41 +3521,67 @@
       );
 
 
-    reveals.forEach(item => {
-      revealObserver.observe(item);
-    });
+    reveals.forEach(
+      item => {
+
+        revealObserver.observe(
+          item
+        );
+
+      }
+    );
 
 
-    /* =========================
+    /* =========================================================
        KEYBOARD
-    ========================= */
+    ========================================================= */
 
-    document.addEventListener("keydown", e => {
+    document.addEventListener(
+      "keydown",
+      e => {
 
-      if(e.key === "ArrowLeft"){
-        next.click();
+        if(
+          e.key === "ArrowLeft"
+        ){
+
+          next.click();
+
+        }
+
+
+        if(
+          e.key === "ArrowRight"
+        ){
+
+          prev.click();
+
+        }
+
       }
-
-      if(e.key === "ArrowRight"){
-        prev.click();
-      }
-
-    });
+    );
 
 
-    /* =========================
+    /* =========================================================
        INITIAL
-    ========================= */
+    ========================================================= */
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      document
-        .querySelector(".hero .reveal")
-        ?.classList.add("show");
+        document
+          .querySelector(
+            ".hero .reveal"
+          )
+          ?.classList.add(
+            "show"
+          );
 
-    },500);
+      },
+      500
+    );
 
   </script>
 
 </body>
+
 </html>
