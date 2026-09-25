@@ -30,6 +30,10 @@
   --gold:#d4af37;
   --text:#4b2630;
   --shadow:rgba(128,0,32,.16);
+
+  --theme-bg-1:#fff7f8;
+  --theme-bg-2:#ffe3e9;
+  --theme-bg-3:#fff7f5;
 }
 
 
@@ -64,12 +68,16 @@ body{
     ),
     linear-gradient(
       135deg,
-      #fff7f8,
-      #ffe3e9 50%,
-      #fff7f5
+      var(--theme-bg-1),
+      var(--theme-bg-2) 50%,
+      var(--theme-bg-3)
     );
 
   overflow-x:hidden;
+
+  transition:
+    background 1s ease,
+    color .7s ease;
 }
 
 button{
@@ -79,6 +87,233 @@ button{
 ::selection{
   background:#ff9caf;
   color:white;
+}
+
+
+/* =========================================================
+   THEME SWITCHER
+========================================================= */
+
+.theme-switcher{
+  position:fixed;
+
+  top:18px;
+  right:18px;
+
+  z-index:10000;
+}
+
+.theme-main-btn{
+  width:48px;
+  height:48px;
+
+  border:1px solid rgba(255,255,255,.8);
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.62);
+
+  backdrop-filter:blur(18px);
+
+  color:var(--burgundy);
+
+  font-size:21px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 12px 35px rgba(128,0,32,.12);
+
+  transition:
+    transform .4s ease,
+    background .4s ease;
+}
+
+.theme-main-btn:hover{
+  transform:
+    rotate(18deg)
+    scale(1.08);
+}
+
+.theme-options{
+  position:absolute;
+
+  top:58px;
+  right:0;
+
+  width:190px;
+
+  padding:10px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.75);
+
+  border:
+    1px solid rgba(255,255,255,.9);
+
+  backdrop-filter:blur(25px);
+
+  box-shadow:
+    0 20px 50px rgba(128,0,32,.16);
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:
+    translateY(-10px)
+    scale(.95);
+
+  transition:.35s ease;
+}
+
+.theme-switcher.open .theme-options{
+  opacity:1;
+  visibility:visible;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.theme-option{
+  width:100%;
+
+  border:0;
+
+  background:transparent;
+
+  padding:11px 12px;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+  text-align:right;
+
+  color:#633743;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  transition:.3s ease;
+
+  font-size:13px;
+}
+
+.theme-option:hover{
+  background:
+    rgba(255,182,193,.25);
+
+  transform:
+    translateX(-3px);
+}
+
+.theme-dot{
+  width:25px;
+  height:25px;
+
+  border-radius:50%;
+
+  flex:none;
+
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.7);
+}
+
+.theme-dot.pink{
+  background:
+    linear-gradient(135deg,#ff7590,#e60067);
+}
+
+.theme-dot.night{
+  background:
+    linear-gradient(135deg,#30203f,#8b4775);
+}
+
+.theme-dot.rose{
+  background:
+    linear-gradient(135deg,#ffd0c7,#9b294b);
+}
+
+
+/* =========================================================
+   THEME 2 — NIGHT ROMANCE
+========================================================= */
+
+body.theme-night{
+
+  --pink:#d99ac0;
+  --pink-light:#f6eaf2;
+  --pink-dark:#e7a0c5;
+  --rose:#bd6f9d;
+  --burgundy:#3d1731;
+  --cream:#fff9fc;
+  --gold:#e0bd78;
+  --text:#412c3a;
+  --shadow:rgba(61,23,49,.22);
+
+  --theme-bg-1:#f7edf5;
+  --theme-bg-2:#e8d3e3;
+  --theme-bg-3:#f5eaf2;
+}
+
+body.theme-night .background-glow .glow.one{
+  background:#8e4c86;
+}
+
+body.theme-night .background-glow .glow.two{
+  background:#dba5c9;
+}
+
+body.theme-night .background-glow .glow.three{
+  background:#8f75bd;
+}
+
+body.theme-night .hero h1,
+body.theme-night .section-title h2,
+body.theme-night .final-section h2,
+body.theme-night .paper-title{
+  color:#542542;
+}
+
+
+/* =========================================================
+   THEME 3 — ROSE DREAM
+========================================================= */
+
+body.theme-rose{
+
+  --pink:#ffc8b8;
+  --pink-light:#fff2ed;
+  --pink-dark:#b82f58;
+  --rose:#bd536d;
+  --burgundy:#6d2038;
+  --cream:#fffaf6;
+  --gold:#c99b58;
+  --text:#512e36;
+  --shadow:rgba(109,32,56,.18);
+
+  --theme-bg-1:#fff8f2;
+  --theme-bg-2:#ffe4dc;
+  --theme-bg-3:#fff5ef;
+}
+
+body.theme-rose .background-glow .glow.one{
+  background:#ffad9e;
+}
+
+body.theme-rose .background-glow .glow.two{
+  background:#ffd0bd;
+}
+
+body.theme-rose .background-glow .glow.three{
+  background:#e6a9b9;
 }
 
 
@@ -412,7 +647,7 @@ button{
 
   width:min(
     1100px,
-    calc(100% - 30px)
+    calc(100% - 100px)
   );
 
   display:flex;
@@ -806,11 +1041,6 @@ section{
 
   display:block;
 
-  /*
-    Blend the external images softly
-    with the pink background.
-  */
-
   mix-blend-mode:multiply;
 
   filter:
@@ -827,7 +1057,7 @@ section{
 }
 
 
-/* Different floating movement */
+/* TEDDY ANIMATIONS */
 
 .teddy-1 img{
   animation:
@@ -1491,10 +1721,6 @@ section{
 
 .polaroid{
 
-  /*
-    LANDSCAPE ONLY
-  */
-
   width:min(760px,94vw);
 
   padding:
@@ -1524,9 +1750,7 @@ section{
 }
 
 
-/*
-  Every memory is forced to 16:9 landscape.
-*/
+/* LANDSCAPE 16:9 */
 
 .photo-placeholder{
 
@@ -1535,6 +1759,8 @@ section{
   aspect-ratio:16 / 9;
 
   height:auto;
+
+  min-height:0;
 
   display:block;
 
@@ -1633,6 +1859,264 @@ section{
 
   background:
     var(--pink-dark);
+}
+
+
+/* =========================================================
+   VIDEO MEMORIES
+========================================================= */
+
+.video-section{
+
+  min-height:85vh;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.7),
+      transparent 55%
+    );
+}
+
+.video-bubble{
+
+  width:min(850px,100%);
+
+  margin:auto;
+
+  padding:20px;
+
+  position:relative;
+
+  border-radius:42px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.68),
+      rgba(255,235,241,.55)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.9);
+
+  box-shadow:
+    0 35px 90px
+    rgba(128,0,32,.14);
+
+  backdrop-filter:blur(25px);
+
+  overflow:hidden;
+}
+
+.video-bubble::before{
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border-radius:50%;
+
+  background:#ffb6c1;
+
+  opacity:.16;
+
+  filter:blur(35px);
+
+  top:-70px;
+  right:-40px;
+}
+
+.video-frame{
+
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:16 / 9;
+
+  border-radius:30px;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd9e2,
+      #f2a6b9
+    );
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255,255,255,.5);
+}
+
+.video-frame video{
+
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+
+  background:#f6dce3;
+}
+
+.video-placeholder{
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:25px;
+
+  color:#7a3c4d;
+
+  pointer-events:none;
+
+  transition:.4s ease;
+}
+
+.video-placeholder.hidden{
+  opacity:0;
+}
+
+.video-icon{
+
+  width:82px;
+  height:82px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.65);
+
+  box-shadow:
+    0 15px 35px rgba(128,0,32,.12);
+
+  font-size:35px;
+
+  margin-bottom:15px;
+}
+
+.video-placeholder strong{
+
+  font-family:"Aref Ruqaa",serif;
+
+  font-size:28px;
+
+  color:var(--burgundy);
+}
+
+.video-placeholder span{
+
+  margin-top:5px;
+
+  font-family:"Amiri",serif;
+
+  font-size:17px;
+
+  opacity:.75;
+}
+
+.video-info{
+
+  position:relative;
+
+  padding:
+    20px
+    10px
+    5px;
+
+  text-align:center;
+}
+
+.video-info h3{
+
+  font-family:"Aref Ruqaa",serif;
+
+  color:var(--burgundy);
+
+  font-size:31px;
+}
+
+.video-info p{
+
+  font-family:"Amiri",serif;
+
+  font-size:18px;
+
+  color:#774252;
+
+  margin-top:5px;
+}
+
+.video-upload{
+
+  margin-top:17px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:8px;
+
+  padding:
+    12px
+    23px;
+
+  border:0;
+
+  border-radius:999px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff668b,
+      #c90058
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(201,0,88,.2);
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  transition:.35s ease;
+}
+
+.video-upload:hover{
+
+  transform:
+    translateY(-4px)
+    scale(1.02);
+}
+
+.video-file{
+
+  display:none;
 }
 
 
@@ -1958,12 +2442,31 @@ footer{
 
 @media(max-width:700px){
 
+  .theme-switcher{
+    top:9px;
+    right:9px;
+  }
+
+  .theme-main-btn{
+    width:42px;
+    height:42px;
+    font-size:18px;
+  }
+
+  .theme-options{
+    top:51px;
+    right:0;
+  }
+
   .navbar{
 
     top:10px;
 
     padding:
       9px 12px;
+
+    width:
+      calc(100% - 70px);
   }
 
   .logo{
@@ -2143,10 +2646,6 @@ footer{
       22px;
   }
 
-  /*
-    Still landscape on mobile.
-  */
-
   .photo-placeholder{
 
     aspect-ratio:16 / 9;
@@ -2156,6 +2655,26 @@ footer{
 
   .polaroid-caption{
     font-size:20px;
+  }
+
+
+  /* VIDEO */
+
+  .video-bubble{
+    padding:12px;
+    border-radius:30px;
+  }
+
+  .video-frame{
+    border-radius:22px;
+  }
+
+  .video-info h3{
+    font-size:26px;
+  }
+
+  .video-info p{
+    font-size:16px;
   }
 
 
@@ -2236,6 +2755,64 @@ footer{
 <div
   class="hearts-container"
   id="heartsContainer">
+</div>
+
+
+<!-- =========================================================
+     THEME SWITCHER
+========================================================= -->
+
+<div class="theme-switcher" id="themeSwitcher">
+
+  <button
+    class="theme-main-btn"
+    id="themeMainBtn"
+    aria-label="تغيير شكل الموقع">
+    ✦
+  </button>
+
+  <div class="theme-options">
+
+    <button
+      class="theme-option"
+      data-theme="pink">
+
+      <span class="theme-dot pink"></span>
+
+      <span>
+        Pink Love
+      </span>
+
+    </button>
+
+
+    <button
+      class="theme-option"
+      data-theme="night">
+
+      <span class="theme-dot night"></span>
+
+      <span>
+        Dream Night
+      </span>
+
+    </button>
+
+
+    <button
+      class="theme-option"
+      data-theme="rose">
+
+      <span class="theme-dot rose"></span>
+
+      <span>
+        Rose Dream
+      </span>
+
+    </button>
+
+  </div>
+
 </div>
 
 
@@ -2424,77 +3001,73 @@ footer{
       <div class="teddy-garden">
 
 
-        <!-- =================================================
-             TEDDY 1
-        ================================================== -->
+        <!-- TEDDY 1 -->
 
         <div
           class="teddy teddy-1"
-          data-message="الدبدوب الوردي بيقولك: جنى، إنتِ أحلى حاجة في يومي كله ♡">
+          data-message="الدبدوب الوردي بيقولك: يا جنى، إنتِ مش مجرد شخص بحبه... إنتِ من أجمل التفاصيل اللي حصلت في أيامي، ووجودك لوحده بيخلّي الدنيا ألطف. 🎀♡">
 
           <img
-            src="https://img.favpng.com/16/3/10/teddy-bear-with-a-bow-pastel-colored-teddy-bear-3DP0aC3e.jpg"
-            alt="دبدوب وردي كيوت">
+            src="https://share.google/ySJyv5bf22BhWqDHs"
+            alt="دبدوب جنى الوردي"
+            onerror="this.onerror=null;this.src='https://img.favpng.com/16/3/10/teddy-bear-with-a-bow-pastel-colored-teddy-bear-3DP0aC3e.jpg';">
 
           <div class="teddy-name">
-            الدبدوب الوردي
+            دبدوب جنى الوردي 🎀
           </div>
 
         </div>
 
 
-        <!-- =================================================
-             TEDDY 2
-        ================================================== -->
+        <!-- TEDDY 2 -->
 
         <div
           class="teddy teddy-2"
-          data-message="الدبدوب البني بيقولك: مهما حصل، مكانك عندي دايمًا مميز يا جنى ♡">
+          data-message="الدبدوب الكيوت بيقولك: جنى، لو كان للحب شكل كان هيبقى دبدوب صغير ماسك وردة ومستنيكي تبتسمي. لأن ابتسامتك من الحاجات اللي بتفرّح القلب بجد. 🧸🌷">
 
           <img
-            src="https://cdn.imgbin.com/11/18/4/cute-teddy-bear-cute-teddy-bear-plush-with-pink-bow-4d2YnvL6.jpg"
-            alt="دبدوب بني لطيف">
+            src="https://share.google/1iMa8tG7bEvKKE31R"
+            alt="دبدوب جنى الكيوت"
+            onerror="this.onerror=null;this.src='https://cdn.imgbin.com/11/18/4/cute-teddy-bear-cute-teddy-bear-plush-with-pink-bow-4d2YnvL6.jpg';">
 
           <div class="teddy-name">
-            الدبدوب البني
+            دبدوب الابتسامة 🌷
           </div>
 
         </div>
 
 
-        <!-- =================================================
-             TEDDY 3
-        ================================================== -->
+        <!-- TEDDY 3 — GIF -->
 
         <div
           class="teddy teddy-3"
-          data-message="الدبدوب الأبيض بيقولك: وجودك لوحده بيخلي الحكاية دي أهدى وأجمل 🤍">
+          data-message="الدبدوب المتحرك بيقولك: يا جنا، حتى الدبدوب ده مش عارف يقعد ثابت من كتر ما هو مبسوط إنه جزء من حكايتك. وإنتِ عندي حكاية مش عايزها تخلص. 🤍">
 
           <img
-            src="https://cdn.imgbin.com/19/16/23/teddy-bear-with-a-bow-white-teddy-bear-with-pink-bow-Paac4RUn.jpg"
-            alt="دبدوب أبيض كيوت">
+            src="https://img.wattpad.com/efe89c37ff7993d713d7eaff0832fd04623bac32/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f4d39693575536d4b79764e3653773d3d2d3133382e313563303538616638336531313133383333303536323635363630332e676966"
+            alt="دبدوب متحرك لجنى"
+            onerror="this.onerror=null;this.src='https://cdn.imgbin.com/19/16/23/teddy-bear-with-a-bow-white-teddy-bear-with-pink-bow-Paac4RUn.jpg';">
 
           <div class="teddy-name">
-            الدبدوب الأبيض
+            دبدوب الحكاية 🤍
           </div>
 
         </div>
 
 
-        <!-- =================================================
-             TEDDY 4
-        ================================================== -->
+        <!-- TEDDY 4 -->
 
         <div
           class="teddy teddy-4"
-          data-message="والدبدوب الأخير بيقولك: إنتِ من أجمل التفاصيل اللي دخلت الحكاية دي ♡">
+          data-message="آخر دبدوب بيقولك: جنى، لو الحكاية دي كتاب فأنتِ أجمل صفحة فيه، ولو كانت أغنية فأنتِ الجزء اللي الواحد يحب يعيده ألف مرة. ♡">
 
           <img
-            src="https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTEwL3Jhd3BpeGVsb2ZmaWNlMTBfc29mdF9wYXN0ZWxfY29xdWV0dGVkZHlfYmVhcl90aWVkX3dpdGhfcGFzdF8xMTcwZTZmYS1iYzc3LTRkMjUtOTY1YS1kMjRkYTYwYjhhOGEucG5n.png"
-            alt="دبدوب باستيل كيوت">
+            src="https://share.google/TYajKtdp37RAEAzHV"
+            alt="دبدوب جنى الأخير"
+            onerror="this.onerror=null;this.src='https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTEwL3Jhd3BpeGVsb2ZmaWNlMTBfc29mdF9wYXN0ZWxfY29xdWV0ZWRkeV9iZWFyX3RpZWRfd2l0aF9wYXN0XzExNzBlNmZhLWJjNzctNGQyNS05NjVhLWQyNGRhNjBiOGE4ZS5wbmc.png';">
 
           <div class="teddy-name">
-            الدبدوب الكيوت
+            دبدوب الحكاية ♡
           </div>
 
         </div>
@@ -2560,7 +3133,7 @@ footer{
         <div class="envelope-paper">
 
 
-          <!-- PHOTO 2 ONLY -->
+          <!-- PHOTO 2 -->
 
           <div class="paper-decoration">
 
@@ -2749,6 +3322,101 @@ footer{
           id="prevBtn">
           →
         </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     VIDEO
+========================================================= -->
+
+<section
+  class="video-section"
+  id="video">
+
+  <div class="container reveal">
+
+    <div class="section-title">
+
+      <span>
+        03.5 — OUR LITTLE VIDEO
+      </span>
+
+      <h2>
+        فيديو لينا 🎬
+      </h2>
+
+      <p>
+        هنا تقدري تحطي الفيديو اللي عايزة تضيفيه للذكريات...
+        واختاريه من جهازك وهيظهر جوه الفقاعة الرومانسية.
+      </p>
+
+    </div>
+
+
+    <div class="video-bubble">
+
+      <div class="video-frame">
+
+        <video
+          id="memoryVideo"
+          controls
+          playsinline
+          preload="metadata">
+
+        </video>
+
+
+        <div
+          class="video-placeholder"
+          id="videoPlaceholder">
+
+          <div class="video-icon">
+            ♡
+          </div>
+
+          <strong>
+            فيديو جنى
+          </strong>
+
+          <span>
+            اختاري فيديو من جهازك وخليه جزء من الحكاية
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="video-info">
+
+        <h3>
+          لحظة تتحرك قدامنا... ♡
+        </h3>
+
+        <p>
+          صورة بتخلد ذكرى، وفيديو بيخلي الذكرى تعيش.
+        </p>
+
+
+        <label
+          class="video-upload">
+
+          🎬 اختيار فيديو
+
+          <input
+            class="video-file"
+            id="videoFile"
+            type="file"
+            accept="video/*">
+
+        </label>
 
       </div>
 
@@ -3420,6 +4088,9 @@ function typeLetter(){
   letterText.innerHTML =
     "";
 
+  letterText.scrollTop =
+    0;
+
   let index = 0;
 
   const cursor =
@@ -3704,6 +4375,76 @@ slides.addEventListener(
 
 
 /* =========================================================
+   VIDEO UPLOAD
+========================================================= */
+
+const videoFile =
+  document.getElementById(
+    "videoFile"
+  );
+
+const memoryVideo =
+  document.getElementById(
+    "memoryVideo"
+  );
+
+const videoPlaceholder =
+  document.getElementById(
+    "videoPlaceholder"
+  );
+
+
+videoFile.addEventListener(
+  "change",
+  function(){
+
+    const file =
+      this.files[0];
+
+    if(!file){
+      return;
+    }
+
+
+    if(
+      !file.type.startsWith("video/")
+    ){
+
+      showToast(
+        "اختار ملف فيديو فقط 🎬"
+      );
+
+      this.value =
+        "";
+
+      return;
+    }
+
+
+    const videoURL =
+      URL.createObjectURL(file);
+
+
+    memoryVideo.src =
+      videoURL;
+
+    memoryVideo.load();
+
+
+    videoPlaceholder.classList.add(
+      "hidden"
+    );
+
+
+    showToast(
+      "الفيديو اتحط في ذكريات جنى ♡"
+    );
+
+  }
+);
+
+
+/* =========================================================
    MUSIC
 ========================================================= */
 
@@ -3787,6 +4528,129 @@ audio.addEventListener(
 
     musicBtn.textContent =
       "تشغيل الموسيقى ♫";
+
+  }
+);
+
+
+/* =========================================================
+   THEME SWITCHER
+========================================================= */
+
+const themeSwitcher =
+  document.getElementById(
+    "themeSwitcher"
+  );
+
+const themeMainBtn =
+  document.getElementById(
+    "themeMainBtn"
+  );
+
+const themeOptions =
+  document.querySelectorAll(
+    ".theme-option"
+  );
+
+
+themeMainBtn.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+    themeSwitcher.classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+
+themeOptions.forEach(
+  function(option){
+
+    option.addEventListener(
+      "click",
+      function(){
+
+        const selectedTheme =
+          option.dataset.theme;
+
+
+        document.body.classList.remove(
+          "theme-night",
+          "theme-rose"
+        );
+
+
+        if(
+          selectedTheme ===
+          "night"
+        ){
+
+          document.body.classList.add(
+            "theme-night"
+          );
+
+        }
+
+
+        if(
+          selectedTheme ===
+          "rose"
+        ){
+
+          document.body.classList.add(
+            "theme-rose"
+          );
+
+        }
+
+
+        themeSwitcher.classList.remove(
+          "open"
+        );
+
+
+        const themeNames = {
+
+          pink:
+            "تم اختيار Pink Love ♡",
+
+          night:
+            "تم اختيار Dream Night ✦",
+
+          rose:
+            "تم اختيار Rose Dream 🌹"
+
+        };
+
+
+        showToast(
+          themeNames[selectedTheme]
+        );
+
+      }
+    );
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      !themeSwitcher.contains(event.target)
+    ){
+
+      themeSwitcher.classList.remove(
+        "open"
+      );
+
+    }
 
   }
 );
